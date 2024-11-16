@@ -1,12 +1,65 @@
-﻿@model IEnumerable<Assignment__cumilative_1_csharp.Models.Student>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-<!-- Displaying all the Student (first name and last name) on the webpage as link where you can select any teacher for their further details -->
-@foreach (Assignment__cumilative_1_csharp.Models.Student Student in Model)
-{
-   
-    <div>
-        <a href="/StudentPage/SShow/@Student.student_id">@Student.student_fname @Student.student_lname</a>
+        h1 {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .student-list {
+            text-align: center;
+        }
+
+            .student-list div {
+                margin: 10px 0;
+            }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        footer {           
+            text-align: center;
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student List</h1>
+        <div class="student-list">
+            @foreach (Assignment__cumilative_1_csharp.Models.Student Student in Model)
+            {
+                <div>
+                    <a href="/StudentPage/SShow/@Student.student_id">@Student.student_fname @Student.student_lname</a>
+                </div>
+            }
+        </div>
     </div>
-
-}
+</body>
+</html>

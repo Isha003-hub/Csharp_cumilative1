@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Assignment-_cumilative_1_csharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6724afee317820dfb975702177ee0d4ee3ff0b72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bf1e1951a43086564022834e2ffbafcb0990483")]
 [assembly: System.Reflection.AssemblyProductAttribute("Assignment-_cumilative_1_csharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Assignment-_cumilative_1_csharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

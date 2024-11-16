@@ -1,8 +1,40 @@
-﻿@model Assignment__cumilative_1_csharp.Models.Student
-
-
-<!-- Displaying all the details of Selected teacher from list.cshtml on this webpage  -->
-
-<h1>@Model.student_fname @Model.student_lname</h1>
-<p>Student Number : @Model.student_number.ToString()</p>
-<p>Enrollment Date : @Model.student_enroll_dt.ToString("yyyy-M-d")</p>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #6c757d;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@Model.student_fname @Model.student_lname</h1>
+        <p>Student Number : @Model.student_number.ToString()</p>
+        <p>Enrollment Date : @Model.student_enroll_dt.ToString("yyyy-M-d")</p>
+    </div>
+</body>
+</html>
