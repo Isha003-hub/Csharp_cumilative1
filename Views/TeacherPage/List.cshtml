@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Assignment__cumilative_1_csharp.Models.Teacher>
+
+
+<!-- Displaying all the teachers (first name and last name) on the webpage as link where you can select any teacher for their further details -->
+@foreach (Assignment__cumilative_1_csharp.Models.Teacher Teacher in Model)
+{
+    <div>
+        <a href="/TeacherPage/Show/@Teacher.T_Id">@Teacher.FName @Teacher.LName</a>
+    </div>
+}

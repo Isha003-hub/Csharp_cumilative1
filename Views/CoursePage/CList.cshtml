@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Assignment__cumilative_1_csharp.Models.Course>
+
+
+<!-- Displaying all the Course (first name and last name) on the webpage as link where you can select any teacher for their further details -->
+@foreach (Assignment__cumilative_1_csharp.Models.Course Course in Model)
+{
+    <div>
+        <a href="/CoursePage/CShow/@Course.C_Id">@Course.CCode @Course.CName</a>
+    </div>
+}
