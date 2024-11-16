@@ -1,10 +1,68 @@
 ﻿@model IEnumerable<Assignment__cumilative_1_csharp.Models.Teacher>
 
+<!-- Embedded CSS -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 20px;
+    }
 
-<!--Displaying all the teachers (first name and last name) on the webpage as link where you can select any teacher for their further details-->
-@foreach (Assignment__cumilative_1_csharp.Models.Teacher Teacher in Model)
-{
-    <div>
-        <a href="/TeacherPage/Show/@Teacher.tid">@Teacher.fname @Teacher.lname</a>
-    </div>
-}
+    .teacher-list {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .teacher-list div {
+        margin: 10px 0;
+    }
+
+    .teacher-list a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+    }
+
+    .teacher-list a:hover {
+        text-decoration: underline;
+        color: #0056b3;
+    }
+
+    header, footer {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #888;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: #888;
+    }
+
+    footer a:hover {
+        color: #555;
+    }
+</style>
+
+<header>
+    <h1>Teachers</h1>
+</header>
+
+<!-- Teachers List -->
+<div class="teacher-list">
+    @foreach (Assignment__cumilative_1_csharp.Models.Teacher Teacher in Model)
+    {
+        <div>
+            <a href="/TeacherPage/Show/@Teacher.tid">@Teacher.fname @Teacher.lname</a>
+        </div>
+    }
+</div>
+
+<!--
+    © 2024 - Assignment__cumulative_1_csharp - <a href="/Privacy">Privacy</a>
+</footer>-->

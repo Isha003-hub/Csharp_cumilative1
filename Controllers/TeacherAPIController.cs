@@ -41,8 +41,8 @@ namespace Assignment__cumilative_1_csharp.Controllers
 			using (MySqlConnection Connection = _context.AccessDatabase())
 			{
 
-				// Opening the connection
-				Connection.Open();
+                // Opening the connection
+                Connection.Open();
 
 
 				// Establishing a new query for our database 
