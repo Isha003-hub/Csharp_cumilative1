@@ -1,5 +1,5 @@
 # Project Overview
-This C# project demonstrates CRUD operations through the management of Teacher objects, making it a practical tool for learning object-oriented programming (OOP).
+This C# project demonstrates CRUD operations through the management of Teacher objects, making it a practical tool for learning object-oriented programming.
 
 ## Key Features
 **Teacher Class:** Manages data attributes like TeacherId, TeacherFName, TeacherLName, TeacherHireDate, EmployeeNumber, and TeacherSalary.
