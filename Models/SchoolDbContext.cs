@@ -17,8 +17,9 @@ namespace Assignment__cumilative_1_csharp.Models
 		{
 			get
 			{
-				// convert zero datetime is a db connection setting which returns NULL if the date is 0000-00-00
-				// which allows interpretation of the date in Csharp
+				// The "Convert Zero Datetime" setting in the database connection configuration 
+				// ensures that dates with the value "0000-00-00" are returned as NULL. 
+				// This allows the date to be properly interpreted in C# applications.
 
 				return "server = " + Server
 					+ "; user = " + User
@@ -30,20 +31,21 @@ namespace Assignment__cumilative_1_csharp.Models
 		}
 
 
-
-		/// We use this method to get Database
+		/// This method is used to establish a connection to the database.
 		/// <summary>
-		/// It returns a connection to the Database
+		/// Returns an active connection to the database.
 		/// </summary>
 		/// <example>
 		/// private SchoolDbContext Teachers = new SchoolDbContext();
 		/// MySqlConnection Connection = Teachers.AccessDatabase();
 		/// </example>
-		/// <returns>A MySqlConnection Object</returns>
+		/// <returns>A MySqlConnection object representing the database connection.</returns>
+
 		public MySqlConnection AccessDatabase()
 		{
-			// We are giving instance to SchoolDbContext class to create an object
-			// The object is a specific connection to our school database on port 3306 of localhost
+			// An instance of the SchoolDbContext class is created to initialize an object.
+			// This object represents a specific connection to the school database 
+			// running on port 3306 of the localhost.
 			return new MySqlConnection(ConnectionString);
 		}
 	}

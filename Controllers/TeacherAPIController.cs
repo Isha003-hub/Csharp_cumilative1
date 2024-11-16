@@ -18,22 +18,24 @@ namespace Assignment__cumilative_1_csharp.Controllers
 		}
 
 
+		
+
 		/// <summary>
-		/// The 3th link added to our web page is to teachers API (Swagger UI), 
-		/// it redirects to a swagger apge that shows a list of all teachers in our created database.
+		/// link 3, which is added to our webpage connects to the Teachers API (Swagger UI), which redirects user to a swgger page and display list of teachers stored in the database.
 		/// </summary>
 		/// <example>
-		/// GET api/Teacher/LTeachers -> [{"TeacherFname":"Alexander", "TeacherLName":"Bennett"},{"TeacherFname":"Caitlin", "TeacherLName":"Cummings"},.............]
-		/// GET api/Teacher/LTeachers -> [{"TeacherFname":"Linda", "Chan":""},{"TeacherFname":"Lauren", "TeacherLName":"Smith"},.............]
+		/// GET api/Teacher/LTeachers -> [{"FirstName":"Alexander", "LastName":"Bennett"},{"FirstName":"Caitlin", "LastName":"Cummings"},.............]  
+		/// GET api/Teacher/LTeachers -> [{"FirstName":"Linda", "LastName":""},{"FirstName":"Lauren", "LastName":"Smith"},.............]  
 		/// </example>
 		/// <returns>
-		/// A list all the teachers from teachers table in the database school
+		/// All teacher records retrieved from the 'teachers' table in the school database.
 		/// </returns>
 
 
+
 		[HttpGet]
-		[Route(template: "LTeachers")]
-		public List<Teacher> LTeachers()
+		[Route(template: "Listeach")]
+		public List<Teacher> Listeach()
 		{
 			// Create a list of Teachers
 			List<Teacher> Teachers = new List<Teacher>();
@@ -63,28 +65,28 @@ namespace Assignment__cumilative_1_csharp.Controllers
 					{
 
 						// Accessing the information of Teacher using the Column name as an index
-						int t_id = Convert.ToInt32(ResultSet["teacherid"]);
-						string fn = ResultSet["teacherfname"].ToString();
-						string ln = ResultSet["teacherlname"].ToString();
-						string empnum = ResultSet["employeenumber"].ToString();
-						DateTime hdate = Convert.ToDateTime(ResultSet["hiredate"]);
+						int teach_id = Convert.ToInt32(ResultSet["teacherid"]);
+						string first_name = ResultSet["teacherfname"].ToString();
+						string last_name = ResultSet["teacherlname"].ToString();
+						string e_number = ResultSet["employeenumber"].ToString();
+						DateTime hire_date = Convert.ToDateTime(ResultSet["hiredate"]);
 						decimal salary = Convert.ToDecimal(ResultSet["salary"]);
 
 
 						// Assigning short names for properties of the Teacher
-						Teacher teacher_details = new Teacher()
+						Teacher t_details = new Teacher()
 						{
-							T_Id = t_id,
-							FName = fn,
-							LName = ln,
-							HireDate = hdate,
-							E_Number = empnum,
-							Salary = salary
+							tid = teach_id,
+							fname = first_name,
+							lname = last_name,
+							hiredt = hire_date,
+							enumber = e_number,
+							salary = salary
 						};
 
 
-						// Adding all the values of properties of teacher_details in Teachers List
-						Teachers.Add(teacher_details);
+						// Adding all the values of properties of t_details in Teachers List
+						Teachers.Add(t_details);
 
 					}
 				}
@@ -95,21 +97,28 @@ namespace Assignment__cumilative_1_csharp.Controllers
 			return Teachers;
 		}
 
-
 		/// <summary>
-		/// When we click on a teacher name, it redirects to a new webpage that shows details of that teacher
-		/// same wayf for API once we give an input of our id it shows details of that teacher
+		/// Clicking on a teacher's name redirects to a new webpage displaying detailed information about that teacher.  
+		/// Similarly, in the API, providing a teacher's ID as input returns their details.
 		/// </summary>
 		/// <remarks>
-		/// it will select the ID of the teacher when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
+		/// The teacher's ID is selected either by clicking on their name on the webpage or by entering the ID in the Swagger UI.  
+		/// This ID is used to fetch the teacher's data from the database.
 		/// </remarks>
 		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+		/// GET api/Teacher/TeacherInfo/3 ->  
+		/// {  
+		///   "TeacherId": 3,  
+		///   "TeacherFname": "Caitlin",  
+		///   "TeacherLName": "Cummings",  
+		///   "EmployeeNumber": "T381",  
+		///   "HireDate": "2014-6-10",  
+		///   "Salary": "62.77"  
+		/// }  
 		/// </example>
 		/// <returns>
-		/// list of all Information about the Selected Teacher from their database
+		/// A detailed record - containing all information about the selected teacher from the database.
 		/// </returns>
-
 
 
 		[HttpGet]
@@ -157,12 +166,12 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 						// Accessing the information of the properties of Teacher and then assigning it to the short names 
 						// created above for all properties of the Teacher
-						SelTeachers.T_Id = t_id;
-						SelTeachers.FName = fn;
-						SelTeachers.LName = ln;
-						SelTeachers.HireDate = hdate;
-						SelTeachers.E_Number = empnum;
-						SelTeachers.Salary = salary;
+						SelTeachers.tid = t_id;
+						SelTeachers.fname = fn;
+						SelTeachers.lname = ln;
+						SelTeachers.hiredt = hdate;
+						SelTeachers.enumber = empnum;
+						SelTeachers.salary = salary;
 					}
 				}
 			}
@@ -172,7 +181,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 			return SelTeachers;
 		}
 
-		// ---------------------------------------------------------Students-----------------------------------------------------------------------
+		//Students
 
 		[HttpGet]
 		[Route(template: "LStudents")]
@@ -238,17 +247,26 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 
 		/// <summary>
-		/// When we click on a teacher name, it redirects to a new webpage that shows details of that teacher
-		/// same wayf for API once we give an input of our id it shows details of that teacher
+		/// Clicking on a teacher's name redirects the user to a webpage displaying detailed information about that teacher.  
+		/// Similarly, using the API, providing a teacher's ID as input retrieves their details.
 		/// </summary>
 		/// <remarks>
-		/// it will select the ID of the teacher when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
+		/// The system identifies the teacher's ID either by selecting their name on the webpage or by inputting the ID in the Swagger UI.  
+		/// This ID is then used to fetch the relevant teacher's data from the database.
 		/// </remarks>
 		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+		/// GET api/Teacher/TeacherInfo/3 ->  
+		/// {  
+		///   "TeacherId": 3,  
+		///   "TeacherFname": "Caitlin",  
+		///   "TeacherLName": "Cummings",  
+		///   "EmployeeNumber": "T381",  
+		///   "HireDate": "2014-06-10",  
+		///   "Salary": "62.77"  
+		/// }  
 		/// </example>
 		/// <returns>
-		/// list of all Information about the Selected Teacher from their database
+		/// A detailed object containing all available information about the selected teacher from the database.
 		/// </returns>
 
 
@@ -295,7 +313,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 						DateTime endate = Convert.ToDateTime(ResultSet["enroldate"]);
 
 
-						// Accessing the information of the properties of Teacher and then assigning it to the short names 
+						// Access the information of the properties of Teacher , then assigning it to the short names 
 						// created above for all properties of the Teacher
 						SelStudent.S_Id = s_id;
 						SelStudent.S_FName = fn;
@@ -311,7 +329,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 			return SelStudent;
 		}
 
-		// -------------------------------------------------Courses--------------------------------------------------------------------------------------
+		//Courses
 
 		[HttpGet]
 		[Route(template: "LCourses")]
@@ -378,19 +396,30 @@ namespace Assignment__cumilative_1_csharp.Controllers
 		}
 
 
+
 		/// <summary>
-		/// When we click on a teacher name, it redirects to a new webpage that shows details of that teacher
-		/// same wayf for API once we give an input of our id it shows details of that teacher
+		/// Selecting a teacher's name navigates the user to a webpage displaying the teacher's detailed information.  
+		/// Similarly, in the API, providing a teacher's ID as input fetches their details.
 		/// </summary>
 		/// <remarks>
-		/// it will select the ID of the teacher when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
+		/// The system uses the teacher's ID, either obtained by clicking on the name in the interface or by entering the ID in the Swagger UI,  
+		/// to query the database and retrieve the corresponding teacher's details.
 		/// </remarks>
 		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+		/// GET api/Teacher/TeacherInfo/3 ->  
+		/// {  
+		///   "TeacherId": 3,  
+		///   "TeacherFname": "Caitlin",  
+		///   "TeacherLName": "Cummings",  
+		///   "EmployeeNumber": "T381",  
+		///   "HireDate": "2014-06-10",  
+		///   "Salary": "62.77"  
+		/// }  
 		/// </example>
 		/// <returns>
-		/// list of all Information about the Selected Teacher from their database
+		/// An object containing all available information about the specified teacher from the database.
 		/// </returns>
+
 
 
 
@@ -437,7 +466,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 						string c_name = ResultSet["coursename"].ToString();
 
 
-						// Accessing the information of the properties of Teacher and then assigning it to the short names 
+						// Access the information of the properties of Teacher and then assigning it to the short names 
 						// created above for all properties of the Teacher
 						SelCourse.C_Id = c_id;
 						SelCourse.CCode = c_code;

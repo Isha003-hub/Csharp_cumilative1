@@ -9,12 +9,9 @@ namespace Assignment__cumilative_1_csharp.Controllers
 {
 	public class StudentPageController : Controller
 	{
-			// API handles gathering all the data from
-			// the Database and MVC is responsible for creating an HTTP response
-			// and showing it on a web page that displays the data from database
-			// to the View.
-
-		//C#
+		// The API retrieves all the data from the database,
+		// The MVC framework handles generating an HTTP response.
+		// and rendering it on a web page to display the database content in the View.
 
 		private readonly TeacherAPIController _api;
 
