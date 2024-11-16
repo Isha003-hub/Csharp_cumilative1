@@ -27,8 +27,8 @@
   },
   {
     "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "Lcourses",
-    "RelativePath": "api/TeacherAPI/LCourses",
+    "Method": "listcourse",
+    "RelativePath": "api/TeacherAPI/listcourse",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -47,15 +47,15 @@
   },
   {
     "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "LStudents",
-    "RelativePath": "api/TeacherAPI/LStudents",
+    "Method": "Listeach",
+    "RelativePath": "api/TeacherAPI/Listeach",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Student, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Teacher, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -67,15 +67,15 @@
   },
   {
     "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "LTeachers",
-    "RelativePath": "api/TeacherAPI/LTeachers",
+    "Method": "liststudent",
+    "RelativePath": "api/TeacherAPI/liststudent",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Teacher, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Student, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

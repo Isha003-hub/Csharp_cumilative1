@@ -17,9 +17,6 @@ namespace Assignment__cumilative_1_csharp.Controllers
 			_context = context;
 		}
 
-
-		
-
 		/// <summary>
 		/// link 3, which is added to our webpage connects to the Teachers API (Swagger UI), which redirects user to a swgger page and display list of teachers stored in the database.
 		/// </summary>
@@ -184,8 +181,8 @@ namespace Assignment__cumilative_1_csharp.Controllers
 		//Students
 
 		[HttpGet]
-		[Route(template: "LStudents")]
-		public List<Student> LStudents()
+		[Route(template: "liststudent")]
+		public List<Student> liststudent()
 		{
 			// Create a list of Students
 			List<Student> Students = new List<Student>();
@@ -225,11 +222,11 @@ namespace Assignment__cumilative_1_csharp.Controllers
 						// Assigning short names for properties of the Students
 						Student student_details = new Student()
 						{
-							S_Id = s_id,
-							S_FName = fn,
-							S_LName = ln,
-							S_Num = snum,
-							S_E_Date = endate,
+							student_id = s_id,
+							student_fname = fn,
+							student_lname = ln,
+							student_number = snum,
+							student_enroll_dt = endate,
 						};
 
 
@@ -315,11 +312,11 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 						// Access the information of the properties of Teacher , then assigning it to the short names 
 						// created above for all properties of the Teacher
-						SelStudent.S_Id = s_id;
-						SelStudent.S_FName = fn;
-						SelStudent.S_LName = ln;
-						SelStudent.S_Num = snum;
-						SelStudent.S_E_Date = endate;
+						SelStudent.student_id = s_id;
+						SelStudent.student_fname = fn;
+						SelStudent.student_lname = ln;
+						SelStudent.student_number = snum;
+						SelStudent.student_enroll_dt = endate;
 					}
 				}
 			}
@@ -332,8 +329,8 @@ namespace Assignment__cumilative_1_csharp.Controllers
 		//Courses
 
 		[HttpGet]
-		[Route(template: "LCourses")]
-		public List<Course> Lcourses()
+		[Route(template: "listcourse")]
+		public List<Course> listcourse()
 		{
 			// Create a list of Students
 			List<Course> Courses = new List<Course>();
@@ -374,12 +371,12 @@ namespace Assignment__cumilative_1_csharp.Controllers
 						// Assigning short names for properties of the Students
 						Course course_details = new Course()
 						{
-							C_Id = c_id,
-							CCode = c_code,
-							T_Id = t_id,
-							S_Date = sdate,
-							E_Date = edate,
-							CName = c_name,
+							Course_id = c_id,
+							Course_code = c_code,
+							teacher_id = t_id,
+							start_date = sdate,
+							end_date = edate,
+							course_name = c_name,
 						};
 
 
@@ -468,12 +465,12 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 						// Access the information of the properties of Teacher and then assigning it to the short names 
 						// created above for all properties of the Teacher
-						SelCourse.C_Id = c_id;
-						SelCourse.CCode = c_code;
-						SelCourse.T_Id = t_id;
-						SelCourse.S_Date = sdate;
-						SelCourse.E_Date = edate;
-						SelCourse.CName = c_name;
+						SelCourse.Course_id = c_id;
+						SelCourse.Course_code = c_code;
+						SelCourse.teacher_id = t_id;
+						SelCourse.start_date = sdate;
+						SelCourse.end_date = edate;
+						SelCourse.course_name = c_name;
 					}
 				}
 			}

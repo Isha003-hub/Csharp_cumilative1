@@ -22,7 +22,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 		}
 		public IActionResult CList()
 		{
-			List<Course> courses = _api.Lcourses();
+			List<Course> courses = _api.listcourse();
 			return View(courses);
 		}
 

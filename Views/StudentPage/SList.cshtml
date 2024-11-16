@@ -4,7 +4,9 @@
 <!-- Displaying all the Student (first name and last name) on the webpage as link where you can select any teacher for their further details -->
 @foreach (Assignment__cumilative_1_csharp.Models.Student Student in Model)
 {
+   
     <div>
-        <a href="/StudentPage/SShow/@Student.S_Id">@Student.S_FName @Student.S_LName</a>
+        <a href="/StudentPage/SShow/@Student.student_id">@Student.student_fname @Student.student_lname</a>
     </div>
+
 }

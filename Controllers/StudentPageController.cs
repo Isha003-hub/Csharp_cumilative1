@@ -22,7 +22,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 		public IActionResult SList()
 		{
-			List<Student> students = _api.LStudents();
+			List<Student> students = _api.liststudent();
 
 			return View(students);
 		}
