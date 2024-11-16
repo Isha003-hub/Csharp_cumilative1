@@ -1,0 +1,54 @@
+# Build Folders
+bin/
+obj/
+
+# User-specific Files
+*.user
+*.userosscache
+*.suo
+*.rsuser
+*.vspx
+*.vspscc
+*.vssscc
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows-specific Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS-specific Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+*.tlog
+
+# Package Files
+*.nupkg
+*.snupkg
+*.tar.gz
+*.vsix
+*.crdownload
+
+# Compiled Binaries
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+*.dotSettings.user
+
+# NuGet
+project.lock.j
