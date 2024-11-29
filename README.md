@@ -1,42 +1,23 @@
-<!---- # Project Overview
-This C# project demonstrates CRUD operations through the management of Teacher objects, making it a practical tool for learning object-oriented programming.
+# School Database Management: Teachers, Students, and Courses
+
+
+This project showcases the implementation of *CRUD (Create, Read, Update, Delete)* operations using *ASP.NET Core Web API* and *MVC. The primary focus is to manage records for teachers, students, and courses within a school database. The objective is to create a **Minimum Viable Product (MVP)* that facilitates managing this data through both *API endpoints* and *dynamic web pages*.
+
+## Learning Goals
+
+1. Gain experience in implementing Create, Read, Update, and Delete functionality for teachers, students, and courses.
+2. Develop skills in applying OOP principles such as classes, properties, and methods to create scalable solutions.
+3. Learn how to integrate a relational database and create relationships between tables to link courses and teachers.
+4. Maintain data consistency by linking courses with teachers via database relationships.
 
 ## Key Features
-**Teacher Class:** Manages data attributes like TeacherId, TeacherFName, TeacherLName, TeacherHireDate, EmployeeNumber, and TeacherSalary.  
-**OOP Implementation:** Applies encapsulation and properties to ensure data integrity and readability.  
-**Data Handling:** Facilitates creating, retrieving, updating, and deleting teacher records.  
 
-## Use Case
-Designed for educational institutions and developers, this project is an ideal resource for exploring OOP and CRUD principles in a real-world context, offering a hands-on learning experience for new developers and students. ------->
+This web application allows users to perform all basic CRUD operations on teachers, students, and courses. It incorporates built-in data validation mechanisms to ensure that entries are correct, such as checking for invalid dates, missing information, and preventing duplicates. A *MySQL database* stores the data, with proper relational connections between teachers, students, and courses to ensure consistency and organization.
 
+## Purpose and Audience
 
-# School Database MVP: CRUD Operations for Teachers, Students, and Courses
+This project serves as a great tool for educational institutions or developers aiming to manage academic records or gain experience with web development. It offers valuable insights into how web applications interact with databases and promotes best practices for clean and well-organized code.
 
-## Project Overview
+## Testing and Validation
 
-This project focuses on developing a Minimum Viable Product (MVP) for managing data related to teachers, students, and courses within a school environment. Built using ASP.NET Core Web API and MVC, the application provides comprehensive functionality for CRUD operations (Create, Read, Update, Delete) via both dynamic web pages and API endpoints.
-
-## Key Features
-**Complete CRUD Functionality:** Allows users to manage teachers, students, and courses efficiently through interactive web interfaces and APIs.  
-**Data Validation and Integrity:** Ensures error-free entries by validating data such as preventing duplicate identifiers, disallowing future dates, and handling missing fields.  
-**Relational Database Support:** Integrates with MySQL, implementing structured relationships between entities to maintain data consistency and integrity.  
-
-# Testing and Validation
-Robust testing has been incorporated to verify the functionality of all CRUD operations, with evidence provided in the form of cURL commands and web page interaction screenshots. Testing ensures:  
-
-**Adding Records:** Proper validation of inputs and successful database storage.  
-**Retrieving Records:** Accurate retrieval and display of data for teachers, students, and courses.  
-**Deleting Records:** Safe deletion with confirmation and appropriate handling of invalid or non-existent entries.  
-
-## Usability
-This application is ideal for educational institutions aiming to manage academic data effectively or for developers exploring web development principles. It serves as a learning tool to understand key aspects of web application development, database management, and object-oriented programming (OOP).
-
-## Learning Objectives
-**Mastering CRUD Operations:** Implement and optimize CRUD functionalities for three distinct data models: Teachers, Students, and Courses.  
-**Practical Application of OOP Principles:** Utilize encapsulation, property management, and modular class structures to enhance scalability and maintainability.  
-**Database Integration Skills:** Design and interact with a relational database using foreign key relationships, particularly between Courses and Teachers.  
-
-**Relational Database Integration:**
-The project employs MySQL to maintain data consistency and integrity. Relationships are structured with appropriate use of foreign keys, ensuring a seamless connection between teachers, courses, and students.
-
-This project not only demonstrates the technical expertise required to build a functional school database but also highlights the importance of good software design practices and testing.
+Testing is important to the project. Every CRUD operation is thoroughly tested to ensure that records are correctly added, retrieved, updated, and deleted. This includes making sure that the data is validated, added correctly to the database, and can be viewed or deleted without any issues. Testing results are provided through screenshots and *cURL* commands to confirm successful operation.
