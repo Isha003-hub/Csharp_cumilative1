@@ -1,0 +1,123 @@
+﻿﻿<!-- This is a form that contains all the inouts required to add a new student -->
+﻿<div id="container">
+
+    <nav>
+        <!-- A link to go back to the list of all students -->
+        <a class="navlink" href="/StudentPage/SList">Back To Students</a>
+    </nav>
+
+    <h2>Add a New Student</h2>
+
+    <!-- Here, action is not directing to another web page but just creating the student and adding it to database -->
+    <!-- Method is post because we don't want the details of the student to be part of the URL -->
+    <form method="POST" action="/StudentPage/CreateStudent">
+        <div class="inputrow">
+            <label for="First_Name">First Name:</label>
+            <input type="text" id="First_Name" name="First_Name" />
+
+        </div>
+        <div class="inputrow">
+            <label for="Last_Name">Last Name:</label>
+            <input type="text" id="Last_Name" name="Last_Name" />
+
+        </div>
+        <div class="inputrow">
+            <label for="Student_Num">Student Number:</label>
+            <input type="text" id="Student_Num" name="Student_Num" />
+
+        </div>
+        <div class="inputrow">
+            <label for="S_Enroll_Date">Enrolment Date:</label>
+            <input type="date" id="S_Enroll_Date" name="S_Enroll_Date" />
+
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Create Student" />
+        </div>
+    </form>
+</div>
+<style>
+/* General container styling */
+#container {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation styling */
+nav {
+    margin-bottom: 20px;
+}
+
+.navlink {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    transition: color 0.2s ease-in-out;
+}
+
+.navlink:hover {
+    color: #0056b3;
+}
+
+/* Heading styling */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input rows */
+.inputrow {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="submit"] {
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+    div.container{
+        text-align: center;
+    }
+</style>

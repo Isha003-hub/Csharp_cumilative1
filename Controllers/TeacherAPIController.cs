@@ -1,483 +1,263 @@
-﻿using Assignment__cumilative_1_csharp.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
-using MySql.Data.MySqlClient;
+using Assignment__cumilative_1_csharp.Models;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 
 namespace Assignment__cumilative_1_csharp.Controllers
+
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class TeacherAPIController : ControllerBase
-	{
-		// This is dependancy injection
-		private readonly SchoolDbContext _context;
-		public TeacherAPIController(SchoolDbContext context)
-		{
-			_context = context;
-		}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TeacherAPIController : ControllerBase
+    {
 
-		/// <summary>
-		/// link 3, which is added to our webpage connects to the Teachers API (Swagger UI), which redirects user to a swgger page and display list of teachers stored in the database.
-		/// </summary>
-		/// <example>
-		/// GET api/Teacher/LTeachers -> [{"FirstName":"Alexander", "LastName":"Bennett"},{"FirstName":"Caitlin", "LastName":"Cummings"},.............]  
-		/// GET api/Teacher/LTeachers -> [{"FirstName":"Linda", "LastName":""},{"FirstName":"Lauren", "LastName":"Smith"},.............]  
-		/// </example>
-		/// <returns>
-		/// All teacher records retrieved from the 'teachers' table in the school database.
-		/// </returns>
+        // This is dependancy injection
+        private readonly SchoolDbContext _context;
+        public TeacherAPIController(SchoolDbContext context)
+        {
+            _context = context;
+        }
 
 
+        /// <summary>
+        /// The 3th link added to our web page is to teachers API (Swagger UI), 
+        /// it redirects to a swagger apge that shows a list of all teachers in our created database.
+        /// </summary>
+        /// <example>
+        /// GET api/Teacher/LTeachers -> [{"t_Id": 0,"fName": "string","lName": "string","hireDate": "2024-11-16T03:13:31.904Z","e_Number": "string","salary": 0}]
+        /// GET api/Teacher/LTeachers -> [{"t_Id": 2,"fName": "Caitlin","lName": "Cummings","hireDate": "2014-06-10T00:00:00","e_Number": "T381","salary": 62.77}]
+        /// </example>
+        /// <returns>
+        /// A list all the teachers from teachers table in the database school
+        /// </returns>
 
-		[HttpGet]
-		[Route(template: "Listeach")]
-		public List<Teacher> Listeach()
-		{
-			// Create a list of Teachers
-			List<Teacher> Teachers = new List<Teacher>();
 
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
+        [HttpGet]
+        [Route(template: "LTeachers")]
+        public List<Teacher> LTeachers()
+        {
+            // Create a list of Teachers
+            List<Teacher> Teachers = new List<Teacher>();
+
+            // 'using' keyword automatically closes the connection by itself after executing the code given inside
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
 
                 // Opening the connection
                 Connection.Open();
 
 
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
-
+                // Establishing a new query for our database 
+                MySqlCommand Command = Connection.CreateCommand();
 
-				// Writing the SQL Query we want to give to database to access information
-				Command.CommandText = "select * from teachers";
-
 
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
-
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
-
-						// Accessing the information of Teacher using the Column name as an index
-						int teach_id = Convert.ToInt32(ResultSet["teacherid"]);
-						string first_name = ResultSet["teacherfname"].ToString();
-						string last_name = ResultSet["teacherlname"].ToString();
-						string e_number = ResultSet["employeenumber"].ToString();
-						DateTime hire_date = Convert.ToDateTime(ResultSet["hiredate"]);
-						decimal salary = Convert.ToDecimal(ResultSet["salary"]);
-
-
-						// Assigning short names for properties of the Teacher
-						Teacher t_details = new Teacher()
-						{
-							tid = teach_id,
-							fname = first_name,
-							lname = last_name,
-							hiredt = hire_date,
-							enumber = e_number,
-							salary = salary
-						};
-
-
-						// Adding all the values of properties of t_details in Teachers List
-						Teachers.Add(t_details);
-
-					}
-				}
-			}
-
-
-			//Return the final list of Teachers 
-			return Teachers;
-		}
-
-		/// <summary>
-		/// Clicking on a teacher's name redirects to a new webpage displaying detailed information about that teacher.  
-		/// Similarly, in the API, providing a teacher's ID as input returns their details.
-		/// </summary>
-		/// <remarks>
-		/// The teacher's ID is selected either by clicking on their name on the webpage or by entering the ID in the Swagger UI.  
-		/// This ID is used to fetch the teacher's data from the database.
-		/// </remarks>
-		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 ->  
-		/// {  
-		///   "TeacherId": 3,  
-		///   "TeacherFname": "Caitlin",  
-		///   "TeacherLName": "Cummings",  
-		///   "EmployeeNumber": "T381",  
-		///   "HireDate": "2014-6-10",  
-		///   "Salary": "62.77"  
-		/// }  
-		/// </example>
-		/// <returns>
-		/// A detailed record - containing all information about the selected teacher from the database.
-		/// </returns>
+                // Writing the SQL Query we want to give to database to access information
+                Command.CommandText = "select * from teachers";
 
 
-		[HttpGet]
-		[Route(template: "TeacherInfo/{id}")]
-		public Teacher TeacherInfo(int id)
-		{
+                // Storing the Result Set query in a variable
+                using (MySqlDataReader ResultSet = Command.ExecuteReader())
+                {
 
-			// Created an object "SelTeachers" using Teacher definition defined as Class in Models
-			Teacher SelTeachers = new Teacher();
+                    // While loop is used to loop through each row in the ResultSet 
+                    while (ResultSet.Read())
+                    {
 
-
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
+                        // Accessing the information of Teacher using the Column name as an index
+                        int t_id = Convert.ToInt32(ResultSet["teacherid"]);
+                        string fn = ResultSet["teacherfname"].ToString();
+                        string ln = ResultSet["teacherlname"].ToString();
+                        string empnum = ResultSet["employeenumber"].ToString();
+                        DateTime hdate = Convert.ToDateTime(ResultSet["hiredate"]);
+                        decimal salary = Convert.ToDecimal(ResultSet["salary"]);
 
-				// Opening the Connection
-				Connection.Open();
 
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
+                        // Assigning short names for properties of the Teacher
+                        Teacher teacher_details = new Teacher()
+                        {
+                            Teacher_Id = t_id,
+                            First_Name = fn,
+                            Last_Name = ln,
+                            HireDate = hdate,
+                            Emp_Num = empnum,
+                            Salary = salary
+                        };
 
 
-				// @id is replaced with a 'sanitized'(masked) id so that id can be referenced
-				// without revealing the actual @id
-				Command.CommandText = "select * from teachers where teacherid=@id";
-				Command.Parameters.AddWithValue("@id", id);
+                        // Adding all the values of properties of teacher_details in Teachers List
+                        Teachers.Add(teacher_details);
 
+                    }
+                }
+            }
 
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
 
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
+            //Return the final list of Teachers 
+            return Teachers;
+        }
 
-						// Accessing the information of Teacher using the Column name as an index
-						int t_id = Convert.ToInt32(ResultSet["teacherid"]);
-						string fn = ResultSet["teacherfname"].ToString();
-						string ln = ResultSet["teacherlname"].ToString();
-						string empnum = ResultSet["employeenumber"].ToString();
-						DateTime hdate = Convert.ToDateTime(ResultSet["hiredate"]);
-						decimal salary = Convert.ToDecimal(ResultSet["salary"]);
-
-
-						// Accessing the information of the properties of Teacher and then assigning it to the short names 
-						// created above for all properties of the Teacher
-						SelTeachers.tid = t_id;
-						SelTeachers.fname = fn;
-						SelTeachers.lname = ln;
-						SelTeachers.hiredt = hdate;
-						SelTeachers.enumber = empnum;
-						SelTeachers.salary = salary;
-					}
-				}
-			}
-
-
-			//Return the Information of the SelTeachers
-			return SelTeachers;
-		}
 
-		//Students
-
-		[HttpGet]
-		[Route(template: "liststudent")]
-		public List<Student> liststudent()
-		{
-			// Create a list of Students
-			List<Student> Students = new List<Student>();
-
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
+        /// <summary>
+        /// When we click on a teacher name, it redirects to a new webpage that shows details of that teacher
+        /// same wayf for API once we give an input of our id it shows details of that teacher
+        /// </summary>
+        /// <remarks>
+        /// it will select the ID of the teacher when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
+        /// </remarks>
+        /// <example>
+        /// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+        /// </example>
+        /// <returns>
+        /// list of all Information about the Selected Teacher from their database
+        /// </returns>
 
-				// Opening the connection
-				Connection.Open();
 
 
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
+        [HttpGet]
+        [Route(template: "TeacherInfo/{id}")]
+        public Teacher TeacherInfo(int id)
+        {
 
+            // Created an object "SelTeachers" using Teacher definition defined as Class in Models
+            Teacher SelTeachers = new Teacher();
 
-				// Writing the SQL Query we want to give to database to access information
-				Command.CommandText = "select * from students";
 
+            // 'using' keyword automatically closes the connection by itself after executing the code given inside
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
 
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
+                // Opening the Connection
+                Connection.Open();
 
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
+                // Establishing a new query for our database 
+                MySqlCommand Command = Connection.CreateCommand();
 
-						// Accessing the information of Students using the Column name as an index
-						int s_id = Convert.ToInt32(ResultSet["studentid"]);
-						string fn = ResultSet["studentfname"].ToString();
-						string ln = ResultSet["studentlname"].ToString();
-						string snum = ResultSet["studentnumber"].ToString();
-						DateTime endate = Convert.ToDateTime(ResultSet["enroldate"]);
 
-
-						// Assigning short names for properties of the Students
-						Student student_details = new Student()
-						{
-							student_id = s_id,
-							student_fname = fn,
-							student_lname = ln,
-							student_number = snum,
-							student_enroll_dt = endate,
-						};
+                // @id is replaced with a 'sanitized'(masked) id so that id can be referenced
+                // without revealing the actual @id
+                Command.CommandText = "select * from teachers where teacherid=@id";
+                Command.Parameters.AddWithValue("@id", id);
 
 
-						// Adding all the values of properties of Students_details in student List
-						Students.Add(student_details);
+                // Storing the Result Set query in a variable
+                using (MySqlDataReader ResultSet = Command.ExecuteReader())
+                {
 
-					}
-				}
-			}
+                    // While loop is used to loop through each row in the ResultSet 
+                    while (ResultSet.Read())
+                    {
 
+                        // Accessing the information of Teacher using the Column name as an index
+                        int t_id = Convert.ToInt32(ResultSet["teacherid"]);
+                        string fn = ResultSet["teacherfname"].ToString();
+                        string ln = ResultSet["teacherlname"].ToString();
+                        string empnum = ResultSet["employeenumber"].ToString();
+                        DateTime hdate = Convert.ToDateTime(ResultSet["hiredate"]);
+                        decimal salary = Convert.ToDecimal(ResultSet["salary"]);
+
+
+                        // Accessing the information of the properties of Teacher and then assigning it to the short names 
+                        // created above for all properties of the Teacher
+                        SelTeachers.Teacher_Id = t_id;
+                        SelTeachers.First_Name = fn;
+                        SelTeachers.Last_Name = ln;
+                        SelTeachers.HireDate = hdate;
+                        SelTeachers.Emp_Num = empnum;
+                        SelTeachers.Salary = salary;
+                    }
+                }
+            }
 
-			//Return the final list of Students 
-			return Students;
-		}
 
+            //Return the Information of the SelTeachers
+            return SelTeachers;
+        }
 
-		/// <summary>
-		/// Clicking on a teacher's name redirects the user to a webpage displaying detailed information about that teacher.  
-		/// Similarly, using the API, providing a teacher's ID as input retrieves their details.
-		/// </summary>
-		/// <remarks>
-		/// The system identifies the teacher's ID either by selecting their name on the webpage or by inputting the ID in the Swagger UI.  
-		/// This ID is then used to fetch the relevant teacher's data from the database.
-		/// </remarks>
-		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 ->  
-		/// {  
-		///   "TeacherId": 3,  
-		///   "TeacherFname": "Caitlin",  
-		///   "TeacherLName": "Cummings",  
-		///   "EmployeeNumber": "T381",  
-		///   "HireDate": "2014-06-10",  
-		///   "Salary": "62.77"  
-		/// }  
-		/// </example>
-		/// <returns>
-		/// A detailed object containing all available information about the selected teacher from the database.
-		/// </returns>
+        /// <summary>
+        /// The method adds a new teacher to the database by inserting a record into the teachers table and returns the ID of the inserted teacher
+        /// </summary>
+        /// <param name="TeacherData"> An object containing the details of the teacher to be added, including first name, last name, employee number, salary, and hire date </param>
+        /// <returns>
+        /// The ID of the newly inserted teacher record
+        /// </returns>
+        /// <example> 
+        /// POST: api/TeacherAPI/AddTeacher -> 11
+        /// assuming that 11th record is added
+        /// </example>
 
 
 
-		[HttpGet]
-		[Route(template: "StudentInfo/{id}")]
-		public Student StudentInfo(int id)
-		{
+        [HttpPost(template: "AddTeacher")]
+        public int AddTeacher([FromBody] Teacher TeacherData)
+        {
+            // 'using' keyword is used that will close the connection by itself after executing the code given inside
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                // Opening the Connection
+                Connection.Open();
 
-			// Created an object "SelTeachers" using Teacher definition defined as Class in Models
-			Student SelStudent = new Student();
+                // Establishing a new query for our database
+                MySqlCommand Command = Connection.CreateCommand();
 
+                // It contains the SQL query to insert a new teacher into the teachers table            
+                Command.CommandText = "INSERT INTO teachers (teacherfname, teacherlname, employeenumber, salary, hiredate) VALUES (@teacherfname, @teacherlname, @employeenumber, @salary, @hiredate)";
 
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
+                Command.Parameters.AddWithValue("@teacherfname", TeacherData.First_Name);
+                Command.Parameters.AddWithValue("@teacherlname", TeacherData.Last_Name);
+                Command.Parameters.AddWithValue("@hiredate", TeacherData.HireDate);
+                Command.Parameters.AddWithValue("@salary", TeacherData.Salary);
+                Command.Parameters.AddWithValue("@employeenumber", TeacherData.Emp_Num);
 
-				// Opening the Connection
-				Connection.Open();
+                // It runs the query against the database and the new record is inserted
+                Command.ExecuteNonQuery();
 
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
+                // It fetches the ID of the newly inserted teacher record and converts it to an integer to be returned
+                return Convert.ToInt32(Command.LastInsertedId);
 
 
-				// @id is replaced with a 'sanitized'(masked) id so that id can be referenced
-				// without revealing the actual @id
-				Command.CommandText = "select * from students where studentid=@id";
-				Command.Parameters.AddWithValue("@id", id);
+            }
 
+        }
 
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
 
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
 
-						// Accessing the information of Teacher using the Column name as an index
-						int s_id = Convert.ToInt32(ResultSet["studentid"]);
-						string fn = ResultSet["studentfname"].ToString();
-						string ln = ResultSet["studentlname"].ToString();
-						string snum = ResultSet["studentnumber"].ToString();
-						DateTime endate = Convert.ToDateTime(ResultSet["enroldate"]);
+        /// <summary>
+        /// The method deletes a teacher from the database using the teacher's ID provided in the request URL. It returns the number of rows affected.
+        /// </summary>
+        /// <param name="TeacherId"> The unique ID of the teacher to be deleted </param>
+        /// <returns>
+        /// The number of rows affected by the DELETE operation
+        /// </returns>
+        /// <example>
+        /// DELETE: api/TeacherAPI/DeleteTeacher/11 -> 1
+        /// </example>
 
+        [HttpDelete(template: "DeleteTeacher/{TeacherId}")]
 
-						// Access the information of the properties of Teacher , then assigning it to the short names 
-						// created above for all properties of the Teacher
-						SelStudent.student_id = s_id;
-						SelStudent.student_fname = fn;
-						SelStudent.student_lname = ln;
-						SelStudent.student_number = snum;
-						SelStudent.student_enroll_dt = endate;
-					}
-				}
-			}
+        public int DeleteTeacher(int TeacherId)
+        {
+            // 'using' keyword is used that will close the connection by itself after executing the code given inside
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                // Opening the Connection
+                Connection.Open();
 
+                // Establishing a new query for our database
+                MySqlCommand Command = Connection.CreateCommand();
 
-			//Return the Information of the SelTeachers
-			return SelStudent;
-		}
+                // It contains the SQL query to delete a record from the teachers table based on the teacher's ID
+                Command.CommandText = "DELETE FROM teachers WHERE teacherid=@id";
+                Command.Parameters.AddWithValue("@id", TeacherId);
 
-		//Courses
+                // It runs the DELETE query and the number of affected rows is returned.
+                return Command.ExecuteNonQuery();
 
-		[HttpGet]
-		[Route(template: "listcourse")]
-		public List<Course> listcourse()
-		{
-			// Create a list of Students
-			List<Course> Courses = new List<Course>();
+            }
 
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
+        }
 
-				// Opening the connection
-				Connection.Open();
+    }
 
 
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
-
-
-				// Writing the SQL Query we want to give to database to access information
-				Command.CommandText = "SELECT * FROM courses;";
-
-
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
-
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
-
-						// Accessing the information of Students using the Column name as an index
-						int c_id = Convert.ToInt32(ResultSet["Courseid"]);
-						string c_code = ResultSet["coursecode"].ToString();
-						int t_id = Convert.ToInt32(ResultSet["teacherid"]);
-						DateTime sdate = Convert.ToDateTime(ResultSet["startdate"]);
-						DateTime edate = Convert.ToDateTime(ResultSet["finishdate"]);
-						string c_name = ResultSet["coursename"].ToString();
-
-
-						// Assigning short names for properties of the Students
-						Course course_details = new Course()
-						{
-							Course_id = c_id,
-							Course_code = c_code,
-							teacher_id = t_id,
-							start_date = sdate,
-							end_date = edate,
-							course_name = c_name,
-						};
-
-
-						// Adding all the values of properties of Students_details in student List
-						Courses.Add(course_details);
-
-					}
-				}
-			}
-
-
-			//Return the final list of Students 
-			return Courses;
-		}
-
-
-
-		/// <summary>
-		/// Selecting a teacher's name navigates the user to a webpage displaying the teacher's detailed information.  
-		/// Similarly, in the API, providing a teacher's ID as input fetches their details.
-		/// </summary>
-		/// <remarks>
-		/// The system uses the teacher's ID, either obtained by clicking on the name in the interface or by entering the ID in the Swagger UI,  
-		/// to query the database and retrieve the corresponding teacher's details.
-		/// </remarks>
-		/// <example>
-		/// GET api/Teacher/TeacherInfo/3 ->  
-		/// {  
-		///   "TeacherId": 3,  
-		///   "TeacherFname": "Caitlin",  
-		///   "TeacherLName": "Cummings",  
-		///   "EmployeeNumber": "T381",  
-		///   "HireDate": "2014-06-10",  
-		///   "Salary": "62.77"  
-		/// }  
-		/// </example>
-		/// <returns>
-		/// An object containing all available information about the specified teacher from the database.
-		/// </returns>
-
-
-
-
-		[HttpGet]
-		[Route(template: "CourseInfo/{id}")]
-		public Course CourseInfo(int id)
-		{
-
-			// Created an object "SelTeachers" using Teacher definition defined as Class in Models
-			Course SelCourse = new Course();
-
-
-			// 'using' keyword automatically closes the connection by itself after executing the code given inside
-			using (MySqlConnection Connection = _context.AccessDatabase())
-			{
-
-				// Opening the Connection
-				Connection.Open();
-
-				// Establishing a new query for our database 
-				MySqlCommand Command = Connection.CreateCommand();
-
-
-				// @id is replaced with a 'sanitized'(masked) id so that id can be referenced
-				// without revealing the actual @id
-				Command.CommandText = "SELECT * FROM courses WHERE courseid = @id;";
-				Command.Parameters.AddWithValue("@id", id);
-
-
-				// Storing the Result Set query in a variable
-				using (MySqlDataReader ResultSet = Command.ExecuteReader())
-				{
-
-					// While loop is used to loop through each row in the ResultSet 
-					while (ResultSet.Read())
-					{
-
-						// Accessing the information of Students using the Column name as an index
-						int c_id = Convert.ToInt32(ResultSet["Courseid"]);
-						string c_code = ResultSet["coursecode"].ToString();
-						int t_id = Convert.ToInt32(ResultSet["teacherid"]);
-						DateTime sdate = Convert.ToDateTime(ResultSet["startdate"]);
-						DateTime edate = Convert.ToDateTime(ResultSet["finishdate"]);
-						string c_name = ResultSet["coursename"].ToString();
-
-
-						// Access the information of the properties of Teacher and then assigning it to the short names 
-						// created above for all properties of the Teacher
-						SelCourse.Course_id = c_id;
-						SelCourse.Course_code = c_code;
-						SelCourse.teacher_id = t_id;
-						SelCourse.start_date = sdate;
-						SelCourse.end_date = edate;
-						SelCourse.course_name = c_name;
-					}
-				}
-			}
-
-
-			//Return the Information of the SelTeachers
-			return SelCourse;
-		}
-	}
 }

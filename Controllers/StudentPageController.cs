@@ -1,36 +1,76 @@
-﻿using Assignment__cumilative_1_csharp.Models;
-using Microsoft.AspNetCore.Http;
-using System;
-using MySql.Data.MySqlClient;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Assignment__cumilative_1_csharp.Models;
+using Assignment__cumilative_1_csharp.Controllers;
 
 
 namespace Assignment__cumilative_1_csharp.Controllers
 {
-	public class StudentPageController : Controller
-	{
-		// The API retrieves all the data from the database,
-		// The MVC framework handles generating an HTTP response.
-		// and rendering it on a web page to display the database content in the View.
+    public class StudentPageController : Controller
+    {
 
-		private readonly TeacherAPIController _api;
+        // API handles gathering all the data from
+        // the Database and MVC is responsible for creating an HTTP response
+        // and showing it on a web page that displays the data from database
+        // to the View.
 
-		public StudentPageController(TeacherAPIController api)
-		{
-			_api = api;
-		}
+        private readonly StudentAPIController _api;
 
-		public IActionResult SList()
-		{
-			List<Student> students = _api.liststudent();
+        public StudentPageController(StudentAPIController api)
+        {
+            _api = api;
+        }
 
-			return View(students);
-		}
+        public IActionResult SList()
+        {
+            List<Student> students = _api.LStudents();
 
-		public IActionResult SShow(int id)
-		{
-			Student SelStudents = _api.StudentInfo(id);
-			return View(SelStudents);
-		}
-	}
-	}
+            return View(students);
+        }
+
+        public IActionResult SShow(int id)
+        {
+            Student SelStudents = _api.StudentInfo(id);
+            return View(SelStudents);
+        }
+
+        // GET : StudentPage/SNew
+        [HttpGet]
+        public IActionResult SNew(int id)
+        {
+            return View();
+        }
+
+
+
+        // POST: StudentPage/CreateStudent
+        [HttpPost]
+        public IActionResult CreateStudent(Student SNew)
+        {
+            int StudentId = _api.AddStudent(SNew);
+
+            // redirects to "Show" action on "Student" cotroller with id parameter supplied
+            return RedirectToAction("SShow", new { id = StudentId });
+        }
+
+
+
+
+        // GET : StudentPage/SDeleteConfirmcshtml/{id}
+        [HttpGet]
+        public IActionResult SDeleteConfirmcshtml(int id)
+        {
+            Student SelectedStudent = _api.StudentInfo(id);
+            return View(SelectedStudent);
+        }
+
+
+        // POST: StudentPage/DeleteStudent/{id}
+        [HttpPost]
+        public IActionResult DeleteStudent(int id)
+        {
+            int StudentId = _api.DeleteStudent(id);
+            // redirects to list action
+            return RedirectToAction("SList");
+        }
+    }
+}

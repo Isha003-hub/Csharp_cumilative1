@@ -1,66 +1,81 @@
 ﻿@model IEnumerable<Assignment__cumilative_1_csharp.Models.Teacher>
 
-<!-- Embedded CSS -->
+<!-- A link is added that will redirect to another Form page where there is a form to add a new teacher-->
+
+<h1>List Of Teachers</h1>
+<a style="margin-bottom:10px;" href="/TeacherPage/New">Add Teacher</a>
+
+<!-- Displaying all the teachers (first name and last name) on the webpage as link where you can select any teacher for their further details -->
+@foreach (Assignment__cumilative_1_csharp.Models.Teacher Teacher in Model)
+{
+    <div class="list">
+        <a href="/TeacherPage/Show/@Teacher.Teacher_Id">@Teacher.First_Name @Teacher.Last_Name</a>
+    </div>
+}
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        margin: 20px;
-    }
-
-    .teacher-list {
-        max-width: 600px;
+    /* Page container styling */
+    .container {
+        max-width: 800px;
         margin: 0 auto;
-        text-align: center;
         padding: 20px;
-        background: #ffffff;
+        background-color: #f9f9f9;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .teacher-list div {
-        margin: 10px 0;
-    }
-
-    .teacher-list a {
-        text-decoration: none;
-        color: #007bff;
-        font-size: 16px;
-    }
-
-    .teacher-list a:hover {
-        text-decoration: underline;
-        color: #0056b3;
-    }
-
-    header, footer {
+    /* Header styling */
+    h1 {
         text-align: center;
-        margin: 10px 0;
-        font-size: 14px;
-        color: #888;
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
     }
 
-    footer a {
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Add Teacher link styling */
+    .add-teacher-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #4CAF50;
         text-decoration: none;
-        color: #888;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s;
     }
 
-    footer a:hover {
-        color: #555;
+        .add-teacher-link:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+    /* Teacher list item container styling */
+    .teacher-item {
+        margin-bottom: 10px;
     }
+
+        /* Teacher link styling */
+        .teacher-item a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #000;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+            .teacher-item a:hover {
+                background-color: #ddd;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+                color: #000;
+            }
 </style>
-
-<header>
-    <h1>Teachers</h1>
-</header>
-
-<!-- Teachers List -->
-<div class="teacher-list">
-    @foreach (Assignment__cumilative_1_csharp.Models.Teacher Teacher in Model)
-    {
-        <div>
-            <a href="/TeacherPage/Show/@Teacher.tid">@Teacher.fname @Teacher.lname</a>
-        </div>
-    }
-</div>
-

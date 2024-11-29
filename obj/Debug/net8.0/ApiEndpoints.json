@@ -1,8 +1,34 @@
 [
   {
-    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.CourseAPIController",
+    "Method": "AddCourse",
+    "RelativePath": "api/CourseAPI/AddCourse",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.CourseAPIController",
     "Method": "CourseInfo",
-    "RelativePath": "api/TeacherAPI/CourseInfo/{id}",
+    "RelativePath": "api/CourseAPI/CourseInfo/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -26,9 +52,35 @@
     ]
   },
   {
-    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "listcourse",
-    "RelativePath": "api/TeacherAPI/listcourse",
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.CourseAPIController",
+    "Method": "DeleteCourse",
+    "RelativePath": "api/CourseAPI/DeleteCourse/{CourseId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.CourseAPIController",
+    "Method": "Lcourses",
+    "RelativePath": "api/CourseAPI/LCourses",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -46,16 +98,22 @@
     ]
   },
   {
-    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "Listeach",
-    "RelativePath": "api/TeacherAPI/Listeach",
-    "HttpMethod": "GET",
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
+    "Method": "AddStudent",
+    "RelativePath": "api/StudentAPI/AddStudent",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "StudentData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Student",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Teacher, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -66,9 +124,35 @@
     ]
   },
   {
-    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
-    "Method": "liststudent",
-    "RelativePath": "api/TeacherAPI/liststudent",
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
+    "Method": "DeleteStudent",
+    "RelativePath": "api/StudentAPI/DeleteStudent/{StudentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "StudentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
+    "Method": "LStudents",
+    "RelativePath": "api/StudentAPI/LStudents",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -86,9 +170,9 @@
     ]
   },
   {
-    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
     "Method": "StudentInfo",
-    "RelativePath": "api/TeacherAPI/StudentInfo/{id}",
+    "RelativePath": "api/StudentAPI/StudentInfo/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -102,6 +186,78 @@
     "ReturnTypes": [
       {
         "Type": "Assignment__cumilative_1_csharp.Models.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "Method": "AddTeacher",
+    "RelativePath": "api/TeacherAPI/AddTeacher",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TeacherData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Teacher",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "Method": "DeleteTeacher",
+    "RelativePath": "api/TeacherAPI/DeleteTeacher/{TeacherId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TeacherId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "Method": "LTeachers",
+    "RelativePath": "api/TeacherAPI/LTeachers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Assignment__cumilative_1_csharp.Models.Teacher, Assignment-_cumilative_1_csharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

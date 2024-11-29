@@ -1,40 +1,31 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #6c757d;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #6c757d;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>@Model.student_fname @Model.student_lname</h1>
-        <p>Student Number : @Model.student_number.ToString()</p>
-        <p>Enrollment Date : @Model.student_enroll_dt.ToString("yyyy-M-d")</p>
-    </div>
-</body>
-</html>
+﻿@model Assignment__cumilative_1_csharp.Models.Student
+﻿
+<!-- New Added link "Back to List" redirects you to go back to the list page
+ and the Other link "Delete" will redirect to another "Delete confirm" web page
+ to confirm if we wanted to delete that teacher permanently from our database -->
+<a href="/StudentPage/SList">Back to List</a>
+
+<a class="alert-warning" href="/StudentPage/SDeleteConfirmcshtml/@Model.Student_Id">Delete</a>
+
+<!-- Displaying all the details of Selected Student from list.cshtml on this webpage  -->
+
+<h1 class="selected">@Model.First_Name @Model.Last_Name</h1>
+<p>Student Number : @Model.Student_Num.ToString()</p>
+<p>Enrollment Date : @Model.S_Enroll_Date.ToString("yyyy-M-d")</p>
+
+<style>
+    main {
+        background: #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        box-shadow: 2px 2px 4px grey;
+    }
+
+    .selected {
+        margin-bottom: 10px;
+    }
+
+</style>

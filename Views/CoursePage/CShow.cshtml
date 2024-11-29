@@ -1,43 +1,30 @@
-﻿
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #6c757d;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #6c757d;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>@Model.Course_id @Model.course_name.ToString()</h1>
-        <p>Course Code: @Model.Course_code</p>
-        <p>Teacher Id : @Model.teacher_id</p>
-        <p>Start Date : @Model.start_date.ToString("yyyy-M-d")</p>
-        <p>End Date : @Model.end_date.ToString("yyyy-M-d")</p>
-    </div>
-</body>
-</html>
+﻿@model Assignment__cumilative_1_csharp.Models.Course
+
+
+<!-- Displaying all the details of Selected teacher from list.cshtml on this webpage  -->
+
+<a href="/CoursePage/CList">Back to List</a>
+<a class="alert-warning" href="/CoursePage/CDeleteConfirm/@Model.Course_Id">Delete</a>
+
+
+<h1 class="selected">@Model.Course_Id @Model.Course_Name.ToString()</h1>
+<p>Course Code: @Model.Course_Code</p>
+<p>Teacher Id : @Model.Teacher_Id</p>
+<p>Start Date : @Model.C_Start_Date.ToString("yyyy-M-d")</p>
+<p>End Date : @Model.C_End_Date.ToString("yyyy-M-d")</p>
+
+<style>
+    main{
+        background: #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        box-shadow: 2px 2px 4px grey;
+    }
+    .selected{
+        margin-bottom: 10px;
+    }
+
+</style>

@@ -1,36 +1,69 @@
-﻿using Assignment__cumilative_1_csharp.Models;
-using Microsoft.AspNetCore.Http;
-using System;
-using MySql.Data.MySqlClient;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using static System.Net.WebRequestMethods;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Assignment__cumilative_1_csharp.Models;
 
 namespace Assignment__cumilative_1_csharp.Controllers
 {
-	public class CoursePageController : Controller
-	{
-		//The API retrieves data from the database
-		//The MVC framework is tasked with generating an HTTP response and presenting it on a webpage.
-		//This ensures that the database information is displayed seamlessly in the View.
+    public class CoursePageController : Controller
+    {
+        // API handles gathering all the data from
+        // the Database and MVC is responsible for creating an HTTP response
+        // and showing it on a web page that displays the data from database
+        // to the View.
 
-		private readonly TeacherAPIController _api;
-		public CoursePageController(TeacherAPIController api)
-		{
-			_api = api;
-		}
-		public IActionResult CList()
-		{
-			List<Course> courses = _api.listcourse();
-			return View(courses);
-		}
+        private readonly CourseAPIController _api;
 
-		public IActionResult CShow(int id)
-		{
-			Course SelCourse = _api.CourseInfo(id);
-			return View(SelCourse);
-		}
-	}
-	}
+        public CoursePageController(CourseAPIController api)
+        {
+            _api = api;
+        }
 
+        public IActionResult CList()
+        {
+            List<Course> courses = _api.Lcourses();
+
+            return View(courses);
+        }
+
+        public IActionResult CShow(int id)
+        {
+            Course SelCourse = _api.CourseInfo(id);
+            return View(SelCourse);
+        }
+
+        // GET : CoursePage/NewCourse
+        [HttpGet]
+        public IActionResult CNew(int id)
+        {
+            return View();
+        }
+
+
+        // POST: CoursePage/CreateCourse
+        [HttpPost]
+        public IActionResult CreateCourse(Course NewCourse)
+        {
+            int CourseId = _api.AddCourse(NewCourse);
+
+            // redirects to "Show" action on "Course" cotroller with id parameter supplied
+            return RedirectToAction("CShow", new { id = CourseId });
+        }
+
+        // GET : CoursePage/DeleteConfirmCourse/{id}
+        [HttpGet]
+        public IActionResult CDeleteConfirm(int id)
+        {
+            Course SelectedCourse = _api.CourseInfo(id);
+            return View(SelectedCourse);
+        }
+
+
+        // POST: CoursePage/DeleteCourse/{id}
+        [HttpPost]
+        public IActionResult DeleteCourse(int id)
+        {
+            int CourseId = _api.DeleteCourse(id);
+            // redirects to list action
+            return RedirectToAction("CList");
+        }
+    }
+}

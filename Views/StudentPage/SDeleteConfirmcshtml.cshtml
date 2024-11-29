@@ -1,0 +1,93 @@
+﻿@model Assignment__cumilative_1_csharp.Models.Student
+
+<!-- This web page displays the question if user wants to delete the student permanently from the database -->
+
+<div id="container">
+
+    <nav>
+
+        <!-- This link directs you back to the page where details of the student are displayed -->
+        <a class="navlink" href="/StudentPage/SShow/@Model.Student_Id">Cancel</a>
+    </nav>
+
+    <h2>Are you sure you want to delete @Model.First_Name @Model.Last_Name?</h2>
+    <p>This action cannot be undone.</p>
+
+    <!-- This button permanently deletes the student from the database, it will not direct you to any webpage -->
+    <form method="POST" action="/StudentPage/DeleteStudent/@Model.Student_Id">
+        <button class="warning-button">
+            Confirm Delete
+        </button>
+    </form>
+
+</div>
+
+<style>
+/* General container styling */
+#container {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Navigation styling */
+nav {
+    margin-bottom: 20px;
+}
+
+.navlink {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    transition: color 0.2s ease-in-out;
+}
+
+.navlink:hover {
+    color: #0056b3;
+}
+
+/* Heading styling */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Text for the confirmation message */
+p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Warning button styling */
+.warning-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.warning-button:hover {
+    background-color: #c9302c;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+</<style>

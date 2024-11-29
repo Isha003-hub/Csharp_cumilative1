@@ -1,38 +1,30 @@
 ﻿namespace Assignment__cumilative_1_csharp.Models
 {
-	// Created a Teacher Class that defines different properties of the Teacher table which is used to create objects to represents each row in the table.
-	// The properties of each object are accessed and sent to the View for display on the respective webpages.
-	// The Teacher class contains the following 6 properties: 
-	// - tid
-	// - fName
-	// - lName
-	// - hiredt
-	// - enumber
-	// - salary
-	// These properties are accessed by Controllers and then retrieved by the View 
-	// to display the information on the web page.
+    // Created a Teacher Class that defines different properties of the Teacher table
+    // This definition is used to create different objects for each row in that table
+    // The properties of that each object is then accessed and are sent to view to display on the respective webpages
+    // Here, Teacher 'Class' has 6 properties (Teacher_Id, First_Name, Last_Name, HireDate, Emp_Num, Salary)
+    // these are accessed by Controllers and then retrived to View to display that properties information on the web page
 
 
-	public class Teacher
-	{
-		// Unique identifier for each teacher. It is used as the primary key in a database.
-		public int tid { get; set; }
+    public class Teacher
+    {
+        // Unique identifier for each teacher. It is used as the primary key in a database.
+        public int Teacher_Id { get; set; }
 
-		// First name of the teacher. It stores the teacher's first name as a string.
-		public string fname { get; set; }
+        // First name of the teacher. It stores the teacher's first name as a string.
+        public string First_Name { get; set; }
 
-		// Last name of the teacher. It stores the teacher's last name as a string.
-		public string lname{ get; set; }
+        // Last name of the teacher. It stores the teacher's last name as a string.
+        public string Last_Name { get; set; }
 
-		// The date when the teacher was hired. It is used to track employment start date.
-		public DateTime hiredt { get; set; }
+        // The date when the teacher was hired. It is used to track employment start date.
+        public DateTime HireDate { get; set; }
 
-		// It is a unique employee number assigned to each teacher. 
-		public string enumber { get; set; }
+        // It is a unique employee number assigned to each teacher. 
+        public string Emp_Num { get; set; }
 
-		// It is the salary of the teacher. It is stored as a decimal to accommodate monetary values.
-		public decimal salary { get; set; }
-	}
+        // It is the salary of the teacher. It is stored as a decimal to accommodate monetary values.
+        public decimal Salary { get; set; }
+    }
 }
-
-

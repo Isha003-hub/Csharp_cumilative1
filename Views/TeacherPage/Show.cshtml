@@ -1,63 +1,31 @@
 ﻿@model Assignment__cumilative_1_csharp.Models.Teacher
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 20px;
-        }
+<!-- New Added link "Back to List" redirects you to go back to the list page
+ and the Other link "Delete" will redirect to another "Delete confirm" web page 
+ to confirm if we wanted to delete that teacher permanently from our database -->
+<a href="/TeacherPage/List">Back to List</a> 
 
-        .teacher-details {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+<a class="alert-warning" href="/TeacherPage/DeleteConfirm/@Model.Teacher_Id">Delete</a>
 
-            .teacher-details h1 {
-                font-size: 28px;
-                color: #333;
-                margin-bottom: 20px;
-            }
+<!-- Displaying all the details of Selected teacher from list.cshtml on this webpage  -->
 
-            .teacher-details p {
-                font-size: 16px;
-                color: #555;
-                margin: 5px 0;
-            }
+<h1 class="selected">@Model.First_Name @Model.Last_Name</h1>
+<p>Employee Number : @Model.Emp_Num.ToString()</p>
+<p>Hire Date : @Model.HireDate.ToString("yyyy-M-d")</p>
+<p>Salary : @Model.Salary.ToString()</p>
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888;
-        }
+<style>
+    main{
+        background: #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        box-shadow: 2px 2px 4px grey;
+    }
+    .selected{
+        margin-bottom: 10px;
+    }
 
-            footer a {
-                text-decoration: none;
-                color: #888;
-            }
-
-                footer a:hover {
-                    color: #555;
-                }
-    </style>
-</head>
-<body>
-    <div class="teacher-details">
-        <h1>@Model.fname @Model.lname</h1>
-        <p>Employee Number : @Model.enumber.ToString()</p>
-        <p>Hire Date : @Model.hiredt.ToString("yyyy-M-d")</p>
-        <p>Salary : @Model.salary.ToString("C")</p>
-    </div>
-</body>
-</html>
+</style>
