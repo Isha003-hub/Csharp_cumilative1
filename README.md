@@ -10,8 +10,10 @@ This C# project demonstrates CRUD operations through the management of Teacher o
 Designed for educational institutions and developers, this project is an ideal resource for exploring OOP and CRUD principles in a real-world context, offering a hands-on learning experience for new developers and students.
 
 <!----------------------------------------------------------------------------------------------!>
-**# School Database MVP: CRUD Operations for Teachers, Students, and Courses**
-**## Project Overview**
+# School Database MVP: CRUD Operations for Teachers, Students, and Courses**
+
+## Project Overview
+
 This project focuses on developing a Minimum Viable Product (MVP) for managing data related to teachers, students, and courses within a school environment. Built using ASP.NET Core Web API and MVC, the application provides comprehensive functionality for CRUD operations (Create, Read, Update, Delete) via both dynamic web pages and API endpoints.
 
 **## Key Features**
