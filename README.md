@@ -21,7 +21,7 @@ Relational Database Support: Integrates with MySQL, implementing structured rela
 Testing and Validation
 Robust testing has been incorporated to verify the functionality of all CRUD operations, with evidence provided in the form of cURL commands and web page interaction screenshots. Testing ensures:
 
-**## Adding Records: Proper validation of inputs and successful database storage.**
+**## Adding Records:** Proper validation of inputs and successful database storage.
 **## Retrieving Records:** Accurate retrieval and display of data for teachers, students, and courses.
 **## Deleting Records:** Safe deletion with confirmation and appropriate handling of invalid or non-existent entries.
 
