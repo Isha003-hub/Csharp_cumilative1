@@ -1,11 +1,11 @@
 ﻿@model Assignment__cumilative_1_csharp.Models.Course
 
 
-<!-- Displaying all the details of Selected teacher from list.cshtml on this webpage  -->
+<!--Displaying all the details of Selected teacher from CList.cshtml on this webpage-->
 
 <a href="/CoursePage/CList">Back to List</a>
 <a class="alert-warning" href="/CoursePage/CDeleteConfirm/@Model.Course_Id">Delete</a>
-
+<a href="/CoursePage/CEdit/@Model.Course_Id">Edit</a>
 
 <h1 class="selected">@Model.Course_Id @Model.Course_Name.ToString()</h1>
 <p>Course Code: @Model.Course_Code</p>

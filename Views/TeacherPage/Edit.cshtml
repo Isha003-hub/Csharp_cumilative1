@@ -1,0 +1,35 @@
+﻿@model Assignment__cumilative_1_csharp.Models.Teacher
+
+<div id="containershow">
+    <nav>
+        <a class="navlink" href="/TeacherPage/Show/@Model.Teacher_Id">Back</a>
+    </nav>
+    <h2>New Teacher</h2>
+    <form method="POST" action="/TeacherPage/Update/@Model.Teacher_Id">
+        <div class="inputrow">
+            <label for="First_Name">First Name:</label>
+            <input type="text" id="First_Name" name="First_Name" value="@Model.First_Name" />
+
+        </div>
+        <div class="inputrow">
+            <label for="Last_Name">Last Name:</label>
+            <input type="text" id="Last_Name" name="Last_Name" value="@Model.Last_Name" />
+
+        </div>
+        <div class="inputrow">
+            <label for="HireDate">HireDate:</label>
+            <input type="datetime" id="HireDate" name="HireDate" value="@Model.HireDate" />
+        </div>
+        <div class="inputrow">
+            <label for="Salary">Salary:</label>
+            <input type="number" id="Salary" name="Salary" value="@Model.Salary" />
+        </div>
+        <div class="inputrow">
+            <label for="Emp_Num">EmployeeNumber:</label>
+            <input type="text" id="Emp_Num" name="Emp_Num" value="@Model.Emp_Num" />
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Update Teacher"/>
+        </div>
+    </form>
+</div>

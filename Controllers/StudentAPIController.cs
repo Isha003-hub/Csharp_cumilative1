@@ -18,16 +18,17 @@ namespace Assignment__cumilative_1_csharp.Controllers
         }
 
         /// <summary>
-        /// The 3th link added to our web page is to teachers API (Swagger UI), 
-        /// it redirects to a swagger page that shows a list of all teachers in our created database.
+        /// The third link on our webpage directs to the Students API (Swagger UI), 
+        /// which redirects to a Swagger page displaying a list of all students in the database.
         /// </summary>
         /// <example>
-        /// GET api/Teacher/LStudent -> [{"s_Id": 0,"s_FName": "string","s_LName": "string","s_Num": "string","s_E_Date": "2024-11-16T03:21:24.340Z"}]
-        /// GET api/Teacher/LStudent -> [{"t_Id": 2,"fName": "Caitlin","lName": "Cummings","hireDate": "2014-06-10T00:00:00","e_Number": "T381","salary": 62.77}]
+        /// GET api/Student/LStudents -> [{"Student_Id": 0, "First_Name": "string", "Last_Name": "string", "Student_Num": "string", "S_Enroll_Date": "2024-11-16T03:21:24.340Z"}]
+        /// GET api/Student/LStudents -> [{"Student_Id": 2, "Firat_Name": "Caitlin", "Last_Name": "Cummings", Student_Num": "T381", "S_Enroll_Date": "2014-06-10T00:00:00"}]
         /// </example>
         /// <returns>
-        /// A list all the Student from Student table in the database school
+        /// A list of all students from the "Student" table in the "school" database.
         /// </returns>
+
 
         [HttpGet]
         [Route(template: "LStudents")]
@@ -93,18 +94,20 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 
         /// <summary>
-        /// When we click on a Student name, it redirects to a new webpage that shows details of that student
-        /// same way for API once we give an input of our id it shows details of that student
+        /// Clicking on a student's name redirects to a new webpage displaying detailed information about that student. 
+        /// Similarly, using the API, providing the student's ID as input retrieves the student's details.
         /// </summary>
         /// <remarks>
-        /// it will select the ID of the student when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
+        /// The student ID is either selected upon clicking the student's name on the webpage or provided as input in the Swagger UI. 
+        /// This ID is used to fetch the corresponding student's data from the database.
         /// </remarks>
         /// <example>
-        /// GET api/TeacherInfo/1 -> {"s_Id": 1,"s_FName": "Sarah","s_LName": "Valdez","s_Num": "N1678","s_E_Date": "2018-06-18T00:00:00"}
+        /// GET api/Student/StudentInfo/1 -> {"Student_Id": 1, "First_Name": "Sarah", "Last_Name": "Valdez", "Student_Num": "N1678", "Student_Enrollment_Date": "2018-06-18T00:00:00"}
         /// </example>
         /// <returns>
-        /// list of all Information about the Selected student from their database
+        /// Detailed information about the selected student retrieved from the database.
         /// </returns>
+
 
 
 
@@ -162,21 +165,24 @@ namespace Assignment__cumilative_1_csharp.Controllers
             }
 
 
-            //Return the Information of the SelStudent
+            //Return the Information of the SelStudent(selected student)
             return SelStudent;
         }
 
         /// <summary>
-        /// The method adds a new student to the database by inserting a record into the students table and returns the ID of the inserted student
+        /// This method adds a new student to the database by inserting a record into the students table and returns the ID of the newly inserted student.
         /// </summary>
-        /// <param name="StudentData"> An object containing the details of the student to be added, including first name, last name, employee number, salary, and hire date </param>
+        /// <param name="StudentData">
+        /// An object containing the details of the student to be added, such as first name, last name, student number, enrollment date, etc.
+        /// </param>
         /// <returns>
-        /// The ID of the newly inserted student record
+        /// The ID of the newly inserted student record.
         /// </returns>
-        /// <example> 
+        /// <example>
         /// POST: api/StudentAPI/AddStudent -> 11
-        /// assuming that 11th record is added
+        /// (Indicating that the 11th student record was successfully added.)
         /// </example>
+
 
 
 
@@ -214,15 +220,20 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 
         /// <summary>
-        /// The method deletes a student from the database using the student's ID provided in the request URL. It returns the number of rows affected.
+        /// This method deletes a student from the database using the student's unique ID provided in the request URL. 
+        /// It returns the number of rows affected by the delete operation.
         /// </summary>
-        /// <param name="StudentId"> The unique ID of the student to be deleted </param>
+        /// <param name="StudentId">
+        /// The unique ID of the student to be deleted.
+        /// </param>
         /// <returns>
-        /// The number of rows affected by the DELETE operation
+        /// The number of rows affected by the DELETE operation (usually 1 if the student was successfully deleted).
         /// </returns>
         /// <example>
         /// DELETE: api/StudentAPI/DeleteStudent/11 -> 1
+        /// (Indicating that one record was successfully deleted.)
         /// </example>
+
 
         [HttpDelete(template: "DeleteStudent/{StudentId}")]
 
@@ -247,5 +258,48 @@ namespace Assignment__cumilative_1_csharp.Controllers
             }
 
         }
+
+        /// <summary>
+        /// Updates an Student in the database. Data is Student object, request query contains ID
+        /// </summary>
+        /// <param name="StudentData">Student Object</param>
+        /// <param name="StudentId">The Student ID primary key</param>
+        /// <example>
+        /// PUT: api/Student/UpdateStudent/14
+        /// Headers: Content-Type: application/json
+        /// Request Body:
+        /// { "First_name":"Isha", "Last_name":"Shah", "Student_Num" :1221, StudentEnrolmentDate":2024-12-05} -> 
+        /// {"Student_Id":14, "First_name":"Isha", "Last_Name":"Shah", "Student_Num" :1221, S_Enroll_Date":2024-12-05}
+        /// </example>
+        /// <returns>
+        /// The updated Student object
+        /// </returns>
+        [HttpPut(template: "UpdateStudent/{StudentId}")]
+        public Student UpdateStudent(int StudentId, [FromBody] Student StudentData)
+        {
+            // 'using' will close the connection after the code executes
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+
+                //Establish a new command (query) for our database
+                MySqlCommand Command = Connection.CreateCommand();
+
+                // parameterize query
+                Command.CommandText = "update students set studentfname=@studentfname, studentlname=@studentlname, studentnumber = @studentnumber, enroldate = @enroldate where studentid=@id";
+                Command.Parameters.AddWithValue("@studentfname", StudentData.First_Name);
+                Command.Parameters.AddWithValue("@studentlname", StudentData.Last_Name);
+                Command.Parameters.AddWithValue("@studentnumber", StudentData.Student_Num);
+                Command.Parameters.AddWithValue("@enroldate", StudentData.S_Enroll_Date);
+
+                Command.Parameters.AddWithValue("@id", StudentId);
+
+                Command.ExecuteNonQuery();
+
+            }
+
+            return StudentInfo(StudentId);
+        }
+
     }
 }

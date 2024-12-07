@@ -1,13 +1,11 @@
 ﻿@model Assignment__cumilative_1_csharp.Models.Teacher
 
-<!-- New Added link "Back to List" redirects you to go back to the list page
- and the Other link "Delete" will redirect to another "Delete confirm" web page 
- to confirm if we wanted to delete that teacher permanently from our database -->
+<!-- New Added link "Back to List" redirects you to go back to the list page and the Other link "Delete" will redirect to another "Delete confirm" web page to confirm if we wanted to delete that teacher permanently from our database -->
 <a href="/TeacherPage/List">Back to List</a> 
 
 <a class="alert-warning" href="/TeacherPage/DeleteConfirm/@Model.Teacher_Id">Delete</a>
-
-<!-- Displaying all the details of Selected teacher from list.cshtml on this webpage  -->
+<a href="/TeacherPage/Edit/@Model.Teacher_Id">Edit</a>
+<!--Displaying all the details of Selected teacher from List.cshtml on this webpage-->
 
 <h1 class="selected">@Model.First_Name @Model.Last_Name</h1>
 <p>Employee Number : @Model.Emp_Num.ToString()</p>

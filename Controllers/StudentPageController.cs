@@ -8,10 +8,10 @@ namespace Assignment__cumilative_1_csharp.Controllers
     public class StudentPageController : Controller
     {
 
-        // API handles gathering all the data from
-        // the Database and MVC is responsible for creating an HTTP response
-        // and showing it on a web page that displays the data from database
-        // to the View.
+        // The API retrieves all necessary data from the database, 
+        // while the MVC architecture ensures the data is processed 
+        // and sent as an HTTP response. The response is rendered 
+        // on a web page, presenting the database information in the View.
 
         private readonly StudentAPIController _api;
 
@@ -71,6 +71,34 @@ namespace Assignment__cumilative_1_csharp.Controllers
             int StudentId = _api.DeleteStudent(id);
             // redirects to list action
             return RedirectToAction("SList");
+        }
+
+        // GET : StudentPage/SEdit/{id}
+        [HttpGet]
+        public IActionResult SEdit(int id)
+        {
+            Student SelectedStudent = _api.StudentInfo(id);
+            return View(SelectedStudent);
+        }
+
+
+
+        // POST: StudentPage/Update/{id}
+        [HttpPost]
+        public IActionResult Update(int id, string First_Name, string Last_Name, string Student_Num, DateTime S_Enroll_Date)
+        {
+            Student UpdatedStudent = new Student();
+            UpdatedStudent.First_Name = First_Name;
+            UpdatedStudent.Last_Name = Last_Name;
+            UpdatedStudent.Student_Num = Student_Num;
+            UpdatedStudent.S_Enroll_Date = S_Enroll_Date;
+
+
+            // not doing anything with the response
+            _api.UpdateStudent(id, UpdatedStudent);
+
+            // redirects to show teacher
+            return RedirectToAction("SShow", new { id });
         }
     }
 }

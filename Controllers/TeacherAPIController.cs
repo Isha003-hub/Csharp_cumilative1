@@ -21,16 +21,18 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 
         /// <summary>
-        /// The 3th link added to our web page is to teachers API (Swagger UI), 
-        /// it redirects to a swagger apge that shows a list of all teachers in our created database.
+        /// The third link on our webpage directs to the Teachers API (Swagger UI), 
+        /// providing access to a Swagger page that displays a list of all teachers 
+        /// available in the database.
         /// </summary>
         /// <example>
-        /// GET api/Teacher/LTeachers -> [{"t_Id": 0,"fName": "string","lName": "string","hireDate": "2024-11-16T03:13:31.904Z","e_Number": "string","salary": 0}]
-        /// GET api/Teacher/LTeachers -> [{"t_Id": 2,"fName": "Caitlin","lName": "Cummings","hireDate": "2014-06-10T00:00:00","e_Number": "T381","salary": 62.77}]
+        /// GET api/Teacher/List -> [{"Teacher_Id": 0, "First_Name": "string", "Last_Name": "string", "HireDate": "2024-11-16T03:13:31.904Z", "Emp_Num": "string", "Salary": 0}]
+        /// GET api/Teacher/List -> [{"Teacher_Id": 2, "First_Name": "Caitlin", "Last_Name": "Cummings", "HireDate": "2014-06-10T00:00:00", "Emp_Num": "T381", "Salary": 62.77}]
         /// </example>
         /// <returns>
-        /// A list all the teachers from teachers table in the database school
+        /// A list of all teachers retrieved from the "teachers" table in the "school" database.
         /// </returns>
+
 
 
         [HttpGet]
@@ -106,7 +108,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
         /// it will select the ID of the teacher when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
         /// </remarks>
         /// <example>
-        /// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+        /// GET api/Teacher/TeacherInfo/3 -> {"Teacher_Id":3,"First_Name":"Caitlin","Last_Name":"Cummings", "Emp_Num" : "T381", "HireDate" : "2014-6-10", "Salary" : "62.77"}
         /// </example>
         /// <returns>
         /// list of all Information about the Selected Teacher from their database
@@ -175,15 +177,18 @@ namespace Assignment__cumilative_1_csharp.Controllers
         }
 
         /// <summary>
-        /// The method adds a new teacher to the database by inserting a record into the teachers table and returns the ID of the inserted teacher
+        /// This method adds a new teacher to the database by inserting a record into the "teachers" table 
+        /// and returns the unique ID of the newly added teacher.
         /// </summary>
-        /// <param name="TeacherData"> An object containing the details of the teacher to be added, including first name, last name, employee number, salary, and hire date </param>
+        /// <param name="TeacherData">
+        /// An object containing the teacher's details, including first name, last name, employee number, salary, and hire date.
+        /// </param>
         /// <returns>
-        /// The ID of the newly inserted teacher record
+        /// The unique ID of the newly inserted teacher record.
         /// </returns>
-        /// <example> 
-        /// POST: api/TeacherAPI/AddTeacher -> 11
-        /// assuming that 11th record is added
+        /// <example>
+        /// POST: api/TeacherAPI/AddTeacher -> 11  
+        /// (Assuming the 11th record has been successfully added.)
         /// </example>
 
 
@@ -223,15 +228,20 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
 
         /// <summary>
-        /// The method deletes a teacher from the database using the teacher's ID provided in the request URL. It returns the number of rows affected.
+        /// This method removes a teacher from the database based on the teacher's unique ID provided in the request URL. 
+        /// It returns the number of rows affected by the deletion.
         /// </summary>
-        /// <param name="TeacherId"> The unique ID of the teacher to be deleted </param>
+        /// <param name="TeacherId">
+        /// The unique ID of the teacher to be removed.
+        /// </param>
         /// <returns>
-        /// The number of rows affected by the DELETE operation
+        /// The number of rows successfully deleted from the database.
         /// </returns>
         /// <example>
-        /// DELETE: api/TeacherAPI/DeleteTeacher/11 -> 1
+        /// DELETE: api/TeacherAPI/DeleteTeacher/11 -> 1  
+        /// (Indicating that one record was successfully deleted.)
         /// </example>
+
 
         [HttpDelete(template: "DeleteTeacher/{TeacherId}")]
 
@@ -257,7 +267,45 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
         }
 
+        /// <summary>
+        /// Updates an Teacher in the database. Data is Teacher object, request query contains ID
+        /// </summary>
+        /// <param name="TeacherData">Teacher Object</param>
+        /// <param name="TeacherId">The Teacher ID primary key</param>
+        /// <example>
+        /// PUT: api/Teacher/UpdateTeacher/4
+        /// Headers: Content-Type: application/json
+        /// Request Body:
+        /// { "First_Name":"Isha", "Last_Name":"Shah", "Salary":12000, "HireDate":2024-12-05 12:00:00 AM,"Emp_Num":1002} -> 
+        /// {"Teacher_Id":15, "First_Name":"Isha", "Last_Name":"shah", "Salary":12000, "HireDate":2024-12-05 12:00:00 AM,"Emp_Num":1002}
+        /// </example>
+        /// <returns>
+        /// The updated Teacher object
+        /// </returns>
+        [HttpPut(template: "UpdateTeacher/{TeacherId}")]
+        public Teacher UpdateTeacher(int TeacherId, [FromBody] Teacher TeacherData)
+        {
+            // 'using' will close the connection after the code executes
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+
+                //Establish a new command (query) for our database
+                MySqlCommand Command = Connection.CreateCommand();
+
+                // parameterize query
+                Command.CommandText = "update teachers set teacherfname=@teacherfname, teacherlname=@teacherlname, salary=@salary, employeenumber=@employeenumber, hiredate=@hiredate where teacherid=@id";
+                Command.Parameters.AddWithValue("@teacherfname", TeacherData.First_Name);
+                Command.Parameters.AddWithValue("@teacherlname", TeacherData.Last_Name);
+                Command.Parameters.AddWithValue("@hiredate", TeacherData.HireDate);
+                Command.Parameters.AddWithValue("@salary", TeacherData.Salary);
+                Command.Parameters.AddWithValue("@employeenumber", TeacherData.Emp_Num);
+
+                Command.Parameters.AddWithValue("@id", TeacherId);
+
+                Command.ExecuteNonQuery();
+            }
+            return TeacherInfo(TeacherId);
+        }
     }
-
-
 }

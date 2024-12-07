@@ -98,6 +98,37 @@
     ]
   },
   {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.CourseAPIController",
+    "Method": "UpdateCourse",
+    "RelativePath": "api/CourseAPI/UpdateCourse/{CourseId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CourseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "CourseData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Assignment__cumilative_1_csharp.Models.Course",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
     "Method": "AddStudent",
     "RelativePath": "api/StudentAPI/AddStudent",
@@ -196,6 +227,37 @@
     ]
   },
   {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.StudentAPIController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/StudentAPI/UpdateStudent/{StudentId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "StudentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "StudentData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Student",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Assignment__cumilative_1_csharp.Models.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
     "Method": "AddTeacher",
     "RelativePath": "api/TeacherAPI/AddTeacher",
@@ -278,6 +340,37 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Assignment__cumilative_1_csharp.Models.Teacher",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Assignment__cumilative_1_csharp.Controllers.TeacherAPIController",
+    "Method": "UpdateTeacher",
+    "RelativePath": "api/TeacherAPI/UpdateTeacher/{TeacherId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TeacherId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "TeacherData",
+        "Type": "Assignment__cumilative_1_csharp.Models.Teacher",
         "IsRequired": true
       }
     ],

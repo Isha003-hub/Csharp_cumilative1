@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxDRGVsZXRlQ29uZmlybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/CoursePage/CEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxDRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/CoursePage/CList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlUGFnZVxDTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcU0RlbGV0ZUNvbmZpcm1jc2h0bWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/StudentPage/SEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcU0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/StudentPage/SList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFBhZ2VcU0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/TeacherPage/DeleteConfirm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclBhZ2VcRGVsZXRlQ29uZmlybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/TeacherPage/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclBhZ2VcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ISHA/OneDrive/Documents/HUMBER/HTTP-5125- Back-End Web Development 1/cumalitive 1/Assignment-_cumilative_1_csharp/Views/TeacherPage/List.cshtml]

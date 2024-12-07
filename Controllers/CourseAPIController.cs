@@ -15,19 +15,19 @@ namespace Assignment__cumilative_1_csharp.Controllers
             _context = context;
         }
 
-        // -------------------------------------------------Courses--------------------------------------------------------------------------------------
-
         /// <summary>
-        /// The 3th link added to our web page is to student API (Swagger UI), 
-        /// it redirects to a swagger apge that shows a list of all teachers in our created database.
+        /// The third link on our webpage directs to the Students API (Swagger UI), 
+        /// which redirects to a Swagger page displaying information about students and their courses 
+        /// retrieved from the database.
         /// </summary>
         /// <example>
-        /// GET api/Teacher/LTeachers -> [{"c_Id": 0,"cCode": "string","t_Id": 0,"s_Date": "2024-11-16T03:27:01.671Z","e_Date": "2024-11-16T03:27:01.671Z","cName": "string"}]
-        /// GET api/Teacher/LTeachers -> [{"t_Id": 2,"fName": "Caitlin","lName": "Cummings","hireDate": "2014-06-10T00:00:00","e_Number": "T381","salary": 62.77}]
+        /// GET api/Student/Courses -> [{"Course_Id": 0, "Course_Code": "string", "Teacher_Id": 0, "C_Start_Date": "2024-11-16T03:27:01.671Z", "C_End_Date": "2024-11-16T03:27:01.671Z", Course_Name": "string"}]
+        /// GET api/Student/Courses -> [{"Teacher_Id": 2, "First_Name": "Caitlin", "Last_Name": "Cummings", "HireDate": "2014-06-10T00:00:00", "Emp_Num": "T381", "Salary": 62.77}]
         /// </example>
         /// <returns>
-        /// A list all the teachers from teachers table in the database school
+        /// A list of all students and related course information retrieved from the database.
         /// </returns>
+
 
         [HttpGet]
         [Route(template: "LCourses")]
@@ -79,8 +79,6 @@ namespace Assignment__cumilative_1_csharp.Controllers
                             C_End_Date = edate,
                             Course_Name = c_name,
                         };
-
-
                         // Adding all the values of properties of Course_details in student List
                         Courses.Add(course_details);
 
@@ -88,11 +86,9 @@ namespace Assignment__cumilative_1_csharp.Controllers
                 }
             }
 
-
             //Return the final list of course 
             return Courses;
         }
-
 
         /// <summary>
         /// When we click on a course name, it redirects to a new webpage that shows details of that course
@@ -102,7 +98,7 @@ namespace Assignment__cumilative_1_csharp.Controllers
         /// it will select the ID of the course when you click (or give it as an input in swagger ui) on its name and it selects the data from the database from the selected id
         /// </remarks>
         /// <example>
-        /// GET api/Teacher/TeacherInfo/1 -> {"c_Id": 1,"cCode": "http5101","t_Id": 1,"s_Date": "2018-09-04T00:00:00","e_Date": "2018-12-14T00:00:00","cName": "Web Application Development"}
+        /// GET api/Teacher/TeacherInfo/1 -> {"Course_Id": 1,"Course_Code": "http5101","Teacher_Id": 1,"C_Start_Date": "2018-09-04T00:00:00","e_Date": "2018-12-14T00:00:00","Course_Name": "Web Application Development"}
         /// </example>
         /// <returns>
         /// list of all Information about the Selected course from their database
@@ -171,16 +167,20 @@ namespace Assignment__cumilative_1_csharp.Controllers
         }
 
         /// <summary>
-        /// The method adds a new course to the database by inserting a record into the courses table and returns the ID of the inserted course
+        /// Clicking on a course name redirects to a new webpage displaying detailed information about that course. 
+        /// Similarly, using the API, providing the course ID as input retrieves the course details.
         /// </summary>
-        /// <param name="CourseData"> An object containing the details of the course to be added, including first name, last name, employee number, salary, and hire date </param>
-        /// <returns>
-        /// The ID of the newly inserted course record
-        /// </returns>
-        /// <example> 
-        /// POST: api/CourseAPI/AddCourse -> 11
-        /// assuming that 11th record is added
+        /// <remarks>
+        /// The course ID is either selected upon clicking the course name on the webpage or provided as input in the Swagger UI. 
+        /// This ID is used to fetch the corresponding course data from the database.
+        /// </remarks>
+        /// <example>
+        /// GET api/Course/CourseInfo/1 -> {"Course_Id": 1, "Course_Code": "http5101", "Teacher_Id": 1, "Course_Start_Date": "2018-09-04T00:00:00", "Course_End_Date": "2018-12-14T00:00:00", "Course_Name": "Web Application Development"}
         /// </example>
+        /// <returns>
+        /// Detailed information about the selected course retrieved from the database.
+        /// </returns>
+
 
 
 
@@ -216,18 +216,21 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
         }
 
-
-
         /// <summary>
-        /// The method deletes a course from the database using the course's ID provided in the request URL. It returns the number of rows affected.
+        /// This method deletes a course from the database using the course's unique ID provided in the request URL. 
+        /// It returns the number of rows affected by the deletion operation.
         /// </summary>
-        /// <param name="CourseId"> The unique ID of the course to be deleted </param>
+        /// <param name="CourseId">
+        /// The unique ID of the course to be deleted.
+        /// </param>
         /// <returns>
-        /// The number of rows affected by the DELETE operation
+        /// The number of rows deleted from the database.
         /// </returns>
         /// <example>
-        /// DELETE: api/CourseAPI/DeleteCourse/11 -> 1
+        /// DELETE: api/CourseAPI/DeleteCourse/11 -> 1  
+        /// (Indicating that one record was successfully deleted.)
         /// </example>
+
 
         [HttpDelete(template: "DeleteCourse/{CourseId}")]
 
@@ -251,6 +254,47 @@ namespace Assignment__cumilative_1_csharp.Controllers
 
             }
 
+        }
+
+        /// <summary>
+        /// Updates an Course in the database. Data is Course object, request query contains ID
+        /// </summary>
+        /// <param name="CourseData">Course Object</param>
+        /// <param name="CourseId">The Course ID primary key</param>
+        /// <example>
+        /// PUT: api/Course/UpdateCourse/4
+        /// Headers: Content-Type: application/json
+        /// Request Body:
+        /// { "Course_Code":"http5121", "C_Start_Date":2024-12-05,"C_End_Date":2024-12-04,"Course_Name":"WebDev"} -> 
+        /// {"Course_Id":4,"Course_Code":"http5121", "C_Start_Date":2024-12-05 12:00:00 AM,"C_End_Date":2024-12-04 12:00:00 AM,"Course_Name":"WebDev" }
+        /// </example>
+        /// <returns>
+        /// The updated Course object
+        /// </returns>
+        [HttpPut(template: "UpdateCourse/{CourseId}")]
+        public Course UpdateCourse(int CourseId, [FromBody] Course CourseData)
+        {
+            // 'using' will close the connection after the code executes
+            using (MySqlConnection Connection = _context.AccessDatabase())
+            {
+                Connection.Open();
+
+                //Establish a new command (query) for our database
+                MySqlCommand Command = Connection.CreateCommand();
+
+                // parameterize query
+                Command.CommandText = "update courses set coursecode=@coursecode, startdate = @startdate, finishdate = @finishdate, coursename = @coursename, teacherid = @teacherid where courseid=@id";
+                Command.Parameters.AddWithValue("@coursecode", CourseData.Course_Code);
+                Command.Parameters.AddWithValue("@startdate", CourseData.C_Start_Date);
+                Command.Parameters.AddWithValue("@finishdate", CourseData.C_End_Date);
+                Command.Parameters.AddWithValue("@coursename", CourseData.Course_Name);
+                Command.Parameters.AddWithValue("@teacherid", CourseData.Teacher_Id);
+
+                Command.Parameters.AddWithValue("@id", CourseId);
+
+                Command.ExecuteNonQuery();
+            }
+            return CourseInfo(CourseId);
         }
     }
 }

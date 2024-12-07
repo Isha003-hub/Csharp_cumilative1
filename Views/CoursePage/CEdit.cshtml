@@ -1,0 +1,35 @@
+﻿@model Assignment__cumilative_1_csharp.Models.Course
+
+<div id="containershow">
+    <nav>
+        <a class="navlink" href="/CoursePage/ShowCourses/@Model.Course_Id">Back</a>
+    </nav>
+    <h2>New Course</h2>
+    <form method="POST" action="/CoursePage/Update/@Model.Course_Id">
+        <div class="inputrow">
+            <label for="Course_Code">Course Code:</label>
+            <input type="text" id="Course_Code" name="Course_Code" value="@Model.Course_Code" />
+
+        </div>
+        <div class="inputrow">
+            <label for="C_Start_Date">Start Date:</label>
+            <input type="datetime" id="C_Start_Date" name="C_Start_Date" value="@Model.C_Start_Date" />
+
+        </div>
+        <div class="inputrow">
+            <label for="C_End_Date">End Date:</label>
+            <input type="datetime" id="C_End_Date" name="C_End_Date" value="@Model.C_End_Date" />
+        </div>
+        <div class="inputrow">
+            <label for="Course_Name">Course Name:</label>
+            <input type="text" id="Course_Name" name="Course_Name" value="@Model.Course_Name" />
+        </div>
+        <div class="inputrow">
+            <label for="Teacher_Id">Teacher Id:</label>
+            <input type="number" id="Teacher_Id" name="Teacher_Id" value="@Model.Teacher_Id" />
+        </div>
+        <div class="inputrow">
+            <input type="submit" value="Update Course" />
+        </div>
+    </form>
+</div>

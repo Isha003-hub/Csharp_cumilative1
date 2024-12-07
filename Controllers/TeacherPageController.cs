@@ -5,11 +5,10 @@ namespace Assignment__cumilative_1_csharp.Controllers
 {
     public class TeacherPageController : Controller
     {
-
-        // API handles gathering all the data from
-        // the Database and MVC is responsible for creating an HTTP response
-        // and showing it on a web page that displays the data from database
-        // to the View.
+        // The API retrieves all necessary data from the database, 
+        // while the MVC architecture ensures the data is processed 
+        // and sent as an HTTP response. The response is rendered 
+        // on a web page, presenting the database information in the View.
 
         private readonly TeacherAPIController _api;
 
@@ -18,17 +17,18 @@ namespace Assignment__cumilative_1_csharp.Controllers
             _api = api;
         }
 
-
         /// <summary>
-        /// The 4th link added to our web page layout.cshtml is to teachers page, 
-        /// it redirects to a cshtml apge that shows a list of all teachers in our created database.
+        /// The fourth link in the layout.cshtml navigates to the Teachers page. 
+        /// This link redirects users to a .cshtml page displaying a list of all teachers 
+        /// retrieved from the database.
         /// </summary>
         /// <example>
-        /// GET api/Teacher/LTeachers -> Alexander Bennett, Caitlin Cummings, Linda Chan, Lauren Smith, Jessica Morris......
+        /// GET api/Teacher/LTeachers -> Alexander Bennett, Caitlin Cummings, Linda Chan, Lauren Smith, Jessica Morris, etc.
         /// </example>
         /// <returns>
-        /// A list all the teachers from teachers table in the database school
+        /// A complete list of teachers from the "teachers" table in the "school" database.
         /// </returns>
+
 
         public IActionResult List()
         {
@@ -36,20 +36,19 @@ namespace Assignment__cumilative_1_csharp.Controllers
             return View(Teachers);
         }
 
-
-
         /// <summary>
-        /// When we click on a teacher name, it redirects to a new webpage that shows details of that teacher
+        /// Clicking on a teacher's name redirects to a new webpage displaying detailed information about the selected teacher.
         /// </summary>
         /// <remarks>
-        /// it will select the ID of the teacher when you click on its name and it selects the data from the database from the selected id
+        /// The system captures the teacher's ID upon clicking their name, retrieves the corresponding data from the database, and displays it on the page.
         /// </remarks>
         /// <example>
-        /// GET api/Teacher/TeacherInfo/3 -> {"TeacherId":3,"TeacherFname":"Caitlin","TeacherLName":"Cummings", "Employee Number" : "T381", "Hire Date" : "2014-6-10", "Salary" : "62.77"}
+        /// GET api/Teacher/TeacherInfo/3 -> {"Teacher_Id":3, "First_Name":"Caitlin", "Last_Name":"Cummings", "Emp_Num":"T381", "HireDate":"2014-06-10", "Salary":"62.77"}
         /// </example>
         /// <returns>
-        /// list of all Information about the Selected Teacher from their database
+        /// Detailed information about the selected teacher from the database.
         /// </returns>
+
         public IActionResult Show(int id)
         {
             Teacher SelTeachers = _api.TeacherInfo(id);
@@ -91,6 +90,34 @@ namespace Assignment__cumilative_1_csharp.Controllers
             int TeacherId = _api.DeleteTeacher(id);
             // redirects to list action
             return RedirectToAction("List");
+        }
+
+        // GET : TeacherPage/Edit/{id}
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Teacher SelectedTeacher = _api.TeacherInfo(id);
+            return View(SelectedTeacher);
+        }
+
+        // POST: TeacherPage/Update/{id}
+        [HttpPost]
+        public IActionResult Update(int id, string First_Name, string Last_Name, decimal Salary, string Emp_Num, DateTime HireDate)
+        {
+            Teacher UpdatedTeacher = new Teacher();
+            UpdatedTeacher.First_Name = First_Name;
+            UpdatedTeacher.Last_Name = Last_Name;
+            UpdatedTeacher.Salary = Salary;
+            UpdatedTeacher.Emp_Num = Emp_Num;
+            UpdatedTeacher.HireDate = HireDate;
+
+
+            // not doing anything with the response
+            _api.UpdateTeacher(id, UpdatedTeacher);
+
+
+            // redirects to show teacher
+            return RedirectToAction("Show", new { id });
         }
 
     }
