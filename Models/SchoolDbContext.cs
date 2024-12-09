@@ -28,8 +28,6 @@ namespace Assignment__cumilative_1_csharp.Models
             }
         }
 
-
-
         /// We use this method to get Database
         /// <summary>
         /// It returns a connection to the Database

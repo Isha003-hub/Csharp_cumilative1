@@ -5,7 +5,7 @@
         <a class="navlink" href="/TeacherPage/Show/@Model.Teacher_Id">Back</a>
     </nav>
     <h2>New Teacher</h2>
-    <form method="POST" action="/TeacherPage/Update/@Model.Teacher_Id">
+    <form method="POST" name="form" action="/TeacherPage/Update/@Model.Teacher_Id">
         <div class="inputrow">
             <label for="First_Name">First Name:</label>
             <input type="text" id="First_Name" name="First_Name" value="@Model.First_Name" />
@@ -33,3 +33,45 @@
         </div>
     </form>
 </div>
+<script>
+
+    // Creating a formHandle which has whole form as an object
+    var formHandle = document.forms.form;
+
+    // Creating variables that access the TeacherFname, TeacherLname and TeacherSalary from the form
+    var First_Name = formHandle.First_Name;
+    var Last_Name = formHandle.Last_Name;
+    var Salary = formHandle.Salary;
+
+    // On submit, checkinput function is called
+    formHandle.onsubmit = checkinput;
+
+    // checkinput function is validating the input fields of TeacherFname, TeacherLname, and TeacherSalary
+    function checkinput() {
+        if (First_Name.value === "") {
+            First_Name.style.background = "red";
+            First_Name.focus();
+            return false;
+        }
+        else {
+            First_Name.style.background = "inherit";
+        }
+
+        if (Last_Name.value === "") {
+            Last_Name.style.background = "red";
+            Last_Name.focus();
+            return false;
+        }
+        else {
+            Last_Name.style.background = "inherit";
+        }
+        if(Salary.value < 0 ){
+            Salary.style.background= "red";
+            Salary.focus();
+            return false;
+        }
+        else{
+            Salary.style.background = "inherit";
+        }
+    }
+</script>
