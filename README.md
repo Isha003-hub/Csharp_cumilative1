@@ -41,7 +41,7 @@ Verify deletion process, including handling of non-existent records.
 Target Audience: Educational institutions or developers managing academic data.
 
 ## Purpose: A tool for learning and understanding:
--> Core concepts in web development. 
+-> Core concepts in web development.  
 -> Database interaction. 
 -> Object-oriented programming (OOP). 
 -> Learning Objectives 
