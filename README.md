@@ -48,8 +48,8 @@ Target Audience: Educational institutions or developers managing academic data.
 -> CRUD Operations Mastery. 
 
 ## Implement CRUD functionality for three distinct data models:
--> Teachers 
--> Students 
+-> Teachers  
+-> Students  
 -> Courses 
 
 ---
