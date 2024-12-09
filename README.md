@@ -15,8 +15,8 @@ Duplicate identifiers.
 
 ## Relational Database Integration
 Utilizes MySQL with well-structured relationships, ensuring data consistency across:
-Teachers
-Students
+Teachers 
+Students 
 Courses
 
 ---
@@ -41,10 +41,10 @@ Verify deletion process, including handling of non-existent records.
 Target Audience: Educational institutions or developers managing academic data.
 
 ## Purpose: A tool for learning and understanding:
--> Core concepts in web development.
--> Database interaction.
--> Object-oriented programming (OOP).
--> Learning Objectives
+-> Core concepts in web development. 
+-> Database interaction. 
+-> Object-oriented programming (OOP). 
+-> Learning Objectives 
 -> CRUD Operations Mastery
 
 ## Implement CRUD functionality for three distinct data models:
