@@ -42,9 +42,9 @@ Target Audience: Educational institutions or developers managing academic data.
 
 ## Purpose: A tool for learning and understanding:
 -> Core concepts in web development.  
--> Database interaction. 
--> Object-oriented programming (OOP). 
--> Learning Objectives. 
+-> Database interaction.  
+-> Object-oriented programming (OOP).  
+-> Learning Objectives.  
 -> CRUD Operations Mastery. 
 
 ## Implement CRUD functionality for three distinct data models:
