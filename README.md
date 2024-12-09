@@ -38,7 +38,7 @@ Verify deletion process, including handling of non-existent records.
 --- 
 
 ## Usability
-Target Audience: Educational institutions or developers managing academic data.
+**Target Audience:** Educational institutions or developers managing academic data.
 
 ## Purpose: A tool for learning and understanding:
 -> Core concepts in web development.  
