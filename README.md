@@ -44,13 +44,13 @@ Target Audience: Educational institutions or developers managing academic data.
 -> Core concepts in web development.  
 -> Database interaction. 
 -> Object-oriented programming (OOP). 
--> Learning Objectives 
--> CRUD Operations Mastery
+-> Learning Objectives. 
+-> CRUD Operations Mastery. 
 
 ## Implement CRUD functionality for three distinct data models:
 -> Teachers 
 -> Students 
--> Courses
+-> Courses 
 
 ---
 ## Object-Oriented Programming (OOP) Principles:
