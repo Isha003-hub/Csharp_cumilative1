@@ -9,12 +9,12 @@ Enables users to create, read, update, and delete records for teachers, students
 Accessible via APIs and dynamic web pages.
 
 # Data Validation and Integrity
-## Implements error handling for:
+Implements error handling for:
 Invalid entries (e.g., future dates or missing required fields).
 Duplicate identifiers.
 
 # Relational Database Integration
-## Utilizes MySQL with well-structured relationships, ensuring data consistency across:
+Utilizes MySQL with well-structured relationships, ensuring data consistency across:
 Teachers
 Students
 Courses
@@ -22,16 +22,16 @@ Courses
 # Testing and Validation
 Comprehensive testing ensures the proper functionality of each CRUD operation. Evidence is provided through cURL commands and web page interaction screenshots. Key testing scenarios include:
 
-## Adding Records
+### 1. Adding Records
 Validate correct data input and database insertion.
 
-## Reading Records
+### 2. Reading Records
 Ensure accurate retrieval and display of teacher, student, and course data.
 
-## Updating Records
+### 3. Updating Records
 Confirm proper updates of teacher, student, and course information in the database.
 
-## Deleting Records
+### 4. Deleting Records
 Verify deletion process, including handling of non-existent records.
 
 ## Usability
@@ -49,7 +49,8 @@ Teachers
 Students
 Courses
 
-## Object-Oriented Programming (OOP) Principles
+---
+## Object-Oriented Programming (OOP) Principles:
 Apply encapsulation, property management, and modular class structures to ensure clarity and scalability.
 Database Integration
 
