@@ -14,9 +14,9 @@ Invalid entries (e.g., future dates or missing required fields).
 Duplicate identifiers.
 
 ## Relational Database Integration
-Utilizes MySQL with well-structured relationships, ensuring data consistency across:
-Teachers 
-Students 
+Utilizes MySQL with well-structured relationships, ensuring data consistency across: 
+Teachers  
+Students  
 Courses
 
 ---
